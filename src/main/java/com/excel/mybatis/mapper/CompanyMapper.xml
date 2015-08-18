@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.excel.dao.CompanyDao" >
+
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT count(1) FROM `company` where company_id = 1
+	</select>
+	
+	<insert id="insertCompany" parameterType="com.excel.vo.CompanyVO">
+		insert into company (industry,logo,name,vcompany_size,business_scope,website,address,city,tag,detail,short_name,nature)
+		values(#{industry},#{logo},#{name},#{vcompany_size},#{business_scope},#{website},#{address},#{city},#{tag},#{detail},#{short_name},#{nature})
+	</insert>
+	
+	<select id="getCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT count(1) FROM `company` where name = #{value}
+	</select>
+</mapper>
