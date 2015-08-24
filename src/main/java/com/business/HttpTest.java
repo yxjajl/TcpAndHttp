@@ -39,7 +39,7 @@ public class HttpTest {
 		Map<String, String> postParamMap = new HashMap<String, String>();
 		postParamMap.put("uid", "1000");
 		postParamMap.put("lid", "1436406039909-f62c93af9197b0be48792be231071252");
-		postParamMap.put("quid", "1001");
+		postParamMap.put("quid", "1956853");
 
 		String result = HttpUtil.post(url, postParamMap);
 		println(result);

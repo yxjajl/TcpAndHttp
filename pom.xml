@@ -14,6 +14,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${jdbc.version}</version>
@@ -107,22 +113,16 @@
 			<artifactId>jxl</artifactId>
 			<version>2.6.10</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
 
-		 <!-- 
-		<dependency>
-            <groupId>javabuilder</groupId>
-            <artifactId>javabuilder</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>E:/code/nswf/branches/dev-0.5.4/lib/third/fileserver-client-put-0.2.jar</systemPath>
-        </dependency>
- -->
+		<!-- <dependency> <groupId>javabuilder</groupId> <artifactId>javabuilder</artifactId> 
+			<version>1.0</version> <scope>system</scope> <systemPath>E:/code/nswf/branches/dev-0.5.4/lib/third/fileserver-client-put-0.2.jar</systemPath> 
+			</dependency> -->
 	</dependencies>
 
 </project>
