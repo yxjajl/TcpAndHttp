@@ -1,0 +1,9 @@
+@PackageService
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class @NameService {
+	private @NameDao @SmallNameDao;
+	
+}
