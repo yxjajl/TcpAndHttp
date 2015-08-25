@@ -11,12 +11,6 @@ public class ComapreFunMain {
 
 		List<TestClass> list = Arrays.asList(a, b);
 
-		// PrintInterface A = new PrintInterface() {
-		// @Override
-		// public void print(TestaClass a) {
-		// a.print();
-		// }
-		// };
 
 	}
 
