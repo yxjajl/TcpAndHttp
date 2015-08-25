@@ -2,6 +2,11 @@ package com.thread;
 
 import java.util.concurrent.Exchanger;
 
+/**
+ * 交换，两个线程之间交换数据
+ * @author zhengcandong
+ *
+ */
 public class ExchangerThread {
 
 	public static void main(String[] args) {
