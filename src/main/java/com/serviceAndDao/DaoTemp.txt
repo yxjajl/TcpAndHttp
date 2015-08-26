@@ -1,0 +1,9 @@
+package @Package.dao;
+
+import java.util.List;
+
+public interface @NameDao {
+	public List<@VO> select();
+	public void update(@VO vo);
+	public void delete(@VO vo);
+}

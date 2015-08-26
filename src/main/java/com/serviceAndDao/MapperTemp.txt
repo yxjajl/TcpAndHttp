@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="@Package@NameDao" >
+
+	<select id="select" resultType="@VO">
+		SELECT @SelectColumns FROM @Table WHERE @whereid
+	</select>
+	
+	<update id="update" parameterType="@VO">
+		UPDATE @Table SET @UpdateColumns WHERE @whereid
+	</update>
+	
+	<delete id="delete" parameterType="@VO">
+		DELETE FROM @Table WHERE @whereid
+	</delete>
+</mapper>
