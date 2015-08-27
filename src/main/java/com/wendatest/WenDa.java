@@ -7,6 +7,7 @@ import com.util.HttpUtil;
 
 public class WenDa {
 	public static final String PATH= "http://localhost:8080/wenda";
+//	public static final String PATH= "http://10.10.11.80:8088/wenda";
 	
 	public static void main(String[] args) {
 		// testUserLogin();
@@ -14,8 +15,8 @@ public class WenDa {
 		// testUserFriend();
 
 		// testGroupUsers();
-
-		testRegister();
+		testListUser();
+//		testRegister();
 //		testEditUserInfo();
 	}
 
@@ -30,6 +31,18 @@ public class WenDa {
 //		postParamMap.put("skill_tag", "1");
 //		postParamMap.put("one_line", "2");
 //		postParamMap.put("work_exp", "3");
+
+		String result = HttpUtil.post(url, postParamMap);
+		System.out.println(result);
+	}
+	// /wenda
+	public static void testListUser() {
+		String url = PATH + "/m/user/user!list.action";
+		
+		Map<String, String> postParamMap = new HashMap<String, String>();
+		postParamMap.put("uid", "1956291");
+		postParamMap.put("lid", "1438666255919-055ad5a95890bd9cdcb3099439064155");
+		postParamMap.put("toUserId", "5");
 
 		String result = HttpUtil.post(url, postParamMap);
 		System.out.println(result);

@@ -1,0 +1,2 @@
+将bin下的整个com目录拷贝到apache下对应的项目中 /s包括子目录及下的文件 /y不提示 /q 不显示拷凡过程中的文件名
+xcopy E:\code\wenda\trunk\bin\com D:\apache-tomcat-7.0.63\webapps\wenda\WEB-INF\classes /s/y/q
