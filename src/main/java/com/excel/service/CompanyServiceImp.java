@@ -1,5 +1,7 @@
 package com.excel.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +32,9 @@ public class CompanyServiceImp implements CompanyService {
 
 	public boolean exist(String name) {
 		return companyDao.getCountByName(name) > 0;
+	}
+	
+	public void updateField(String name,HashMap<String,Object> map){
+		companyDao.updateField(name,map);
 	}
 }

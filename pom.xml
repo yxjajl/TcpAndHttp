@@ -9,9 +9,24 @@
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<mybatis.version>1.1.0</mybatis.version>
 		<jdbc.version>5.1.36</jdbc.version>
+		<JAVA_HOME>E:\Java\jdk1.8.0_05</JAVA_HOME>
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<version>1.8</version>
+			<scope>system</scope>
+			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.hbase</groupId>

@@ -16,6 +16,7 @@ import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ import com.excel.service.CompanyService;
 import com.excel.service.ConfigConstants;
 import com.excel.up.FileClient;
 import com.excel.vo.CompanyVO;
+import com.google.common.base.Splitter;
 
 @Component
 public class ExcelReader {
@@ -35,24 +37,49 @@ public class ExcelReader {
 		companyService.initConfig();
 		System.out.println("+====config end=========+");
 		String excelFileName = "D:\\ExcelDemo.xls";
+		String updateField = "tag";
+		boolean isUpdateField = false;
 		try {
-			readImg(new File(excelFileName), 1);
+
+			if (updateField != null && updateField.trim().length() > 0) {
+				isUpdateField = true;
+			}
+
+			if (!isUpdateField) {
+				readImg(new File(excelFileName), 1);
+			}
 			List<CompanyVO> list = ExcelReader.readExcel(new File(excelFileName), 2);
-			List<CompanyVO> remove = new ArrayList<CompanyVO>();
-			for (CompanyVO companyVO : list) {
-				if (companyService.exist(companyVO.getName())) {
-					remove.add(companyVO);
+
+			if (!isUpdateField) {
+				List<CompanyVO> remove = new ArrayList<CompanyVO>();
+				for (CompanyVO companyVO : list) {
+					if (companyService.exist(companyVO.getName())) {
+						remove.add(companyVO);
+					}
+				}
+
+				for (CompanyVO companyVO : remove) {
+					list.remove(companyVO);
 				}
 			}
 
-			for (CompanyVO companyVO : remove) {
-				list.remove(companyVO);
-			}
-
 			for (CompanyVO companyVO : list) {
-				companyVO.setLogo(upFile(picMap.get(companyVO.getRow())));
-				System.out.println(companyVO.getRow() + "," + companyVO.getLogo() + "," + companyVO.getName());
-				companyService.insertCompany(companyVO);
+				if (isUpdateField) {
+					HashMap<String, Object> map = new HashMap<>();
+
+					for (String fieldName : Splitter.on(' ').trimResults().omitEmptyStrings().splitToList(updateField)) {
+						Object value = BeanUtils.getPropertyDescriptor(CompanyVO.class, fieldName).getReadMethod().invoke(companyVO);
+						map.put(fieldName, value);
+						System.out.println(fieldName + "," + value);
+					}
+
+					 companyService.updateField(companyVO.getName(),map);
+				} else {
+					// companyVO.setLogo(upFile(picMap.get(companyVO.getRow())));
+					System.out.println(companyVO.getRow() + "," + companyVO.getLogo() + "," + companyVO.getName());
+					// companyService.insertCompany(companyVO);
+				}
+
 			}
 		} catch (BiffException e) {
 			e.printStackTrace();
