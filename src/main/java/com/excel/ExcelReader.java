@@ -36,8 +36,8 @@ public class ExcelReader {
 	public void read() throws Exception {
 		companyService.initConfig();
 		System.out.println("+====config end=========+");
-		String excelFileName = "D:\\ExcelDemo.xls";
-		String updateField = "tag";
+		String excelFileName = "D:\\企业数据信息库.xls";
+		String updateField = "";
 		boolean isUpdateField = false;
 		try {
 
@@ -75,9 +75,9 @@ public class ExcelReader {
 
 					 companyService.updateField(companyVO.getName(),map);
 				} else {
-					// companyVO.setLogo(upFile(picMap.get(companyVO.getRow())));
+					 companyVO.setLogo(upFile(picMap.get(companyVO.getRow())));
 					System.out.println(companyVO.getRow() + "," + companyVO.getLogo() + "," + companyVO.getName());
-					// companyService.insertCompany(companyVO);
+					 companyService.insertCompany(companyVO);
 				}
 
 			}
@@ -141,6 +141,7 @@ public class ExcelReader {
 	}
 
 	public String upFile(File file) throws IOException {
+		if(file == null) return null;
 		FileClient fc = MyFileUpload.upload(file);
 
 		if (fc.isUploadOk()) {

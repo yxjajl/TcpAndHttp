@@ -9,4 +9,8 @@ public interface ConfigDao {
 	public List<CityVO> getCity();
 
 	public List<SysDicVO> getIndustry();
+	
+	public List<Integer> getIndustry2();
+	
+	public List<Integer> getCategory2(int industry);
 }

@@ -14,4 +14,17 @@
 	<select id="getCountByName" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT count(1) FROM `company` where name = #{value}
 	</select>
+	
+	<update id="updateField">
+		update company 
+		<trim prefix="SET" suffixOverrides=",">
+			<foreach collection="map.keys" item="k" separator="and">   
+    		<if test="null != map[k]">    
+       		 ${k} = '${map[k]}'   
+    		</if>  
+			</foreach>
+		</trim>
+		where name = #{name}
+	</update>
+	
 </mapper>

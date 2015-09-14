@@ -9,4 +9,14 @@
 	<select id="getCity" resultType="com.excel.vo.CityVO">
 		SELECT  `id`,  `name` FROM `city`
 	</select>
+	
+	<select id="getIndustry2" resultType="java.lang.Integer">
+		SELECT DISTINCT industry_id FROM `industry_to_tag` 
+	</select>
+	
+	<select id="getCategory2" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT DISTINCT category_id FROM `industry_to_tag` WHERE industry_id = #{industry_id}
+	</select>
+
+
 </mapper>
