@@ -1,7 +1,5 @@
 package com.excel;
 
-import java.util.List;
-
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.excel.service.ConfigService;
@@ -26,17 +24,11 @@ public class TestMain {
 		String sql = "UPDATE job SET industry = %d WHERE category_code = '%d' OR  category_code LIKE  '%d %%'  ;";
 		ConfigService cs = (ConfigService) context.getBean("configService");
 
-		List<Integer> industryList = cs.getIndustry2();
-		List<Integer> categoryList = null;
-
-		if (industryList != null) {
-			for (int industry : industryList) {
-				categoryList = cs.getCategory2(industry);
-				for(int category:categoryList){
-					System.out.println(String.format(sql, industry,category,category));
-				}
-			}
-		}
+		cs.getIndustry2().forEach(industry -> {
+			cs.getCategory2(industry).forEach(category -> {
+				System.out.println(String.format(sql, industry, category, category));
+			});
+		});
 
 	}
 }
