@@ -1,0 +1,12 @@
+5、使用 protocol buffer 编译器编译 addressbook.proto 文件。打开命令行窗口，并定位到 proto_home\examples 目录中，运行命令 protoc --java_out=. addressbook.proto（注意.后面有空格，否则会有错误），执行这个命令后会在当前目录下生成一个java类 com.example.tutorial.AddressBookProtos.java。 
+
+属性详解： 
+
+option java_package = “com.example.foo”; 
+我认为比较重要的文件级选项有 
+java_package ——指定生成的java代码的packge。 
+java_outer_classname ——protoc会为每个.proto文件一个java类，其中每个message都做作为该java类的内部类，这个选项就用于指定外围类的类名。 
+optimize_for ——用于优化protoc产生的代码，有三种模式: 
+SPEED –产生的代码将具有最好的序列化/反序列化执行速度。 
+CODE_SIZE –产生的代码将具有更少的代码行数。 
+LITE_RUNTIME –protocol buffer有一个简化版的runtime库，比如要生成用于手机平台的代码，可以使用这个选项。 

@@ -1,0 +1,233 @@
+将bin下的整个com目录拷贝到apache下对应的项目中 /s包括子目录及下的文件 /y不提示 /q 不显示拷凡过程中的文件名
+xcopy E:\code\wenda\trunk\bin\com D:\apache-tomcat-7.0.63\webapps\wenda\WEB-INF\classes /s/y/q
+
+
+
+Linux 显示10行
+$JAVA_HOME/bin/jmap -histo:live 5151 | more -10
+
+
+awk '{for(i=1;i<=NF;++i) if($i=="fk_cnt") ++sum} END {print sum}' nsfw.log
+
+cat nsfw.log |grep "selectt" |wc -l
+
+awk -v RS="@#$j" '{print gsub(/fk_cnt/,"&")}' nsfw.log
+
+awk '{s+=gsub(/fk_cnt/,"&")}END{print s}' nsfw.log
+
+
+
+=============ab压测工具====================================================
+ab -n 1000 -c 200 http://10.30.0.27:8088/static/facevalue/maker.html
+
+ab -n 1000 -c 200 http://localhost:8080/static/facevalue/maker.html
+
+#post数据放到post.txt中
+ab -n 1000 -c 200 -p post.txt http://localhost:8080/static/handler/savetofile
+
+
+========================================================================================
+scp 192.168.1.3:/data/application/log/*error.* /data/application_logic/log
+
+scp 192.168.1.3:/data/timertask/log/*error*.* /data/timetask/log
+
+scp 192.168.1.4:/data/mqserver/log/*error*.* /data/timetask/log              
+
+
+CCYTQM*^nv34
+
+188922614
+xz1569763023456 
+
+find /data/ddt -name "*2012*" -delete
+
+fxun3g
+26072890
+--------------------------------logicServer-----------------------------------------------
+
+scp -r /data/application_logic/conf 192.168.1.3:/data/application/
+
+scp -r /data/application_logic/file 192.168.1.3:/data/application/
+
+scp /data/application_logic/logicServer.jar 192.168.1.3:/data/application/lib/
+
+
+---------------------------------timer task----------------------------------------------
+
+scp -r conf 192.168.1.3:/data/timertask/
+
+scp timerTask.jar 192.168.1.3:/data/timertask/lib/
+
+
+scp /data/timetask/timerTask.jar 192.168.1.3:/data/timertask/lib/
+
+scp -r /data/timetask/conf 192.168.1.3:/data/timertask/
+
+--------------------------------mqserver------------------------------------------------
+scp -r conf 192.168.1.4:/data/mqserver/
+
+scp MQServer.jar 192.168.1.4:/data/mqserver/lib/
+
+
+
+scp 192.168.1.4:/data/mqserver/log/*.* /data/application_logic/log
+
+
+ps -ef | grep java 
+
+
+
+#tcpdump -e 219.134.186.3 ice
+
+
+tcpdump -i host 192.168.1.3 and port 8899 -w /data/application/abc.cap
+
+
+tcpdump -X host 192.168.1.3 and tcp port 8899 
+
+
+tcpdump -X -s 0 -r aaa host 192.168.1.3 and tcp port 8899 
+
+scp 192.168.1.3:/data/application/aaa /data/application_logic/log
+
+
+
+
+CCYTQM*^nv34
+
+rick asdf1234
+
+
+mysqldump -urick -pasdf1234 -h219.134.186.3 pvzservice > e:/pvz_20110222.sql
+
+flush logs;
+flush master;
+
+219.134.186.3 CCYTQM*^nv34
+测试服 219.134.186.5 admin1234@@
+oracle 219.134.186.6 771201   数据库用户密码 butcher/butcherming329
+
+
+./shutdown.sh
+./startup.sh
+service tomcat start
+
+
+
+================oracle 启动============================
+--以dba的身份连接oracle
+ sqlplus butcher/butcherming329 as sysdba
+
+--启动实例
+sql>startup
+
+
+--启动监听器
+$ lsnrctl start
+
+/usr/local/bin/memcached -d -m 1024 -u root -p 12111
+# /usr/local/bin/memcached -d -m 1024 -u root  -p 11211 -c 1024 -P /tmp/memcached.pid
+# /usr/local/bin/memcached -d -m 1024 -u root -l 192.168.1.20 -p 11211 -c 1024 -P /tmp/memcached.pid
+================activemq 启动============================
+1.进入activemq目录下bin目录
+cd /data/activemq/bin
+
+2.启动activemq
+./activmq start
+
+
+
+
+
+================tomcat启动===========================
+service tomcat start
+或
+./startup.sh
+
+(有时可能需要先运行停止命令)
+./shutdown.sh
+
+
+PURGE MASTER LOGS BEFORE DATE_SUB( NOW( ), INTERVAL 2 DAY);
+
+
+，/proc/sys/fs/file-max
+/etc/security/limits.conf
+.
+
+，/proc/sys/fs/file-max
+
+
+，/proc/sys/fs/file-nr
+
+echo -ne"
+* soft nofile 65536
+* hard nofile 65536
+" >>/etc/security/limits.conf
+
+
+==============解决too open file 问题
+
+执行：ulimit -n
+应该会显示默认值1024
+执行：ulimit -n 8192
+但是ulimit直接修改的数字，在系统重启后会重置，所以还要修改：
+1、/etc/security/limits.conf，在里面加上：
+* soft nofile 8192
+* hard nofile 20480
+2、/etc/pam.d/login，里面加上：
+session  required  /lib/security/pam_limits.so
+
+
+
+flush master logs; 
+
+
+-- 查看time_wait的数量等
+netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+
+
+--查看空间使用
+du -h --max-depth=1|grep G|sort -n
+
+
+
+--清理mysql 3天以前的日志
+PURGE MASTER LOGS BEFORE DATE_SUB( NOW( ), INTERVAL 2 DAY);
+
+----减少close_wait的等待时间
+# echo 1200 > /proc/sys/net/ipv4/tcp_keepalive_time
+
+  # echo 60 > /proc/sys/net/ipv4/tcp_keepalive_intvl
+
+  # echo 20 > /proc/sys/net/ipv4/tcp_keepalive_probes
+
+
+
+
+select cpu_time,sql_text
+from (select sql_text,cpu_time,
+rank() over (order by cpu_time desc) exec_rank
+from v$sql where  parsing_schema_name = 'XIAOYU'
+      )
+where exec_rank <=10;
+
+select sql_text,executions
+from (select sql_text,executions,
+    rank() over
+     (order by executions desc) exec_rank
+    from v$sql where  parsing_schema_name = 'XIAOYU')
+where exec_rank <=10; 
+
+
+
+
+EXP xiaoyu/xiaoyu0525@service FILE=e:\\test.dmp full=y //全部导出
+
+
+
+imp user/password@odbc file=c:\***.dmp full=y ignore=y; 
+
+
+ZHS16GBK
+AL32UTF8

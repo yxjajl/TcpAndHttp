@@ -1,0 +1,15 @@
+windows命令行窗口下执行：运行--cmd
+C:\>netstat -aon|findstr "8080" 
+TCP     127.0.0.1:80       0.0.0.0:0             LISTENING    2448
+端口被进程号为2448的进程占用，继续执行下面命令：
+C:\>tasklist|findstr "2448" 
+thread.exe                   2016 Console                 0     16,064 K
+很清楚，thread占用了你的端口,Kill it
+如果第二步查不到，那就开任务管理器，进程---查看---选择列---pid（进程位标识符）打个勾就可以了
+看哪个进程是2448，然后杀之即可。
+在安装WAMP时，也经常遇到这种问题，说是80端口被占，就把前面的8080改成80即可
+
+
+linux 
+
+netstat –apn | grep 8080

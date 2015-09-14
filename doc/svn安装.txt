@@ -1,0 +1,59 @@
+阿里云安装GCC时报错,
+系统是CentOS 6.2 64位.安装gcc都报错
+转自:http://ybhanxiao.iteye.com/blog/1280999
+
+一般centOS上已经有工具svn了 可以选择安装
+查看是否安装了svn工具使用如下指令:
+rpm -qa | grep subversion
+如果已经安装了,则不需要下载包之类的安装了 直接使用就是 如果没有,则从头看起以下这篇转载的文章
+安装了一下SVN服务器，本文没有与Apache整合，过程如下：
+一，下载相关软件：
+[root@youxia201 test]# wget http://subversion.tigris.org/downloads/subversion-1.6.1.tar.gz
+[root@youxia201 test]# wget http://subversion.tigris.org/downloads/subversion-deps-1.6.1.tar.gz
+ 
+ 
+二，安装及配置：
+1，解压，要在同一个目录下：
+[root@youxia201 opt]# tar -zxvf subversion-1.6.1.tar.gz
+[root@youxia201 opt]# tar -zxvf subversion-deps-1.6.1.tar.gz
+ 
+2，编译及安装：
+[root@youxia201 subversion-1.6.1]# ./configure --prefix=/usr/local/svn/
+
+这里老是报错 说没有C compile $PATH ,就要装GCC
+yum -y install gcc
+还是报错，
+
+centeros 5.5
+打开yum配置文件
+vim /etc/yum.conf 
+找到
+exclude=kernel*
+改成
+# exclude=kernel*
+
+还报 Can't locate ExtUtils/Embed.pm in @INC (@INC contains 这个
+不记得是不是yum install perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker
+
+然后连make包都没有，操蛋的阿里云
+ yum install make
+
+[root@youxia201 subversion-1.6.1]# make && make install
+ 
+3，把svn相关的命令添加到环境变量中：
+[root@youxia201 subversion-1.6.1]# echo "export PATH=$PATH:/usr/local/svn/bin/" >> /etc/profile
+[root@youxia201 subversion-1.6.1]# source /etc/profile
+ 
+[root@youxia201 subversion-1.6.1]# svn
+svn svnadmin svndumpfilter svnlook svnserve svnsync svnversion
+
+
+
+
+
+echo "export PATH=$PATH:/usr/local/svn/bin/" >> /etc/profile
+source /etc/profile
+
+svnadmin create /usr/local/svn/game
+svnserve -d -r /usr/local/svn/game
+netstat -tunlp | grep svn

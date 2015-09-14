@@ -1,0 +1,15 @@
+oracle 
+select sum(bytes)/1024/1024/1024 from dba_segments;
+mysql
+SELECT CONCAT(ROUND(SUM(data_length/1024/1024),2),'MB') AS DATA FROM TABLES WHERE table_schema='miyoudb';
+
+
+
+编辑一下CentOS的 /etc/ssh/sshd_config
+TCPKeepAlive yes
+ClientAliveInterval 300 #这个值可以调大一点
+然后重启sshd
+/etc/init.d/sshd restart
+
+
+PURGE MASTER LOGS BEFORE DATE_SUB( NOW( ), INTERVAL 3 DAY);
