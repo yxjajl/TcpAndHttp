@@ -13,7 +13,6 @@ public class StringUtils {
 			System.out.println("x:" + st.nextToken());
 		}
 
-		Splitter.on(' ').trimResults().omitEmptyStrings().splitToList(str);
 
 	}
 }

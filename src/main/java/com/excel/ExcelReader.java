@@ -6,8 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jxl.Cell;
 import jxl.Image;
@@ -67,17 +69,17 @@ public class ExcelReader {
 				if (isUpdateField) {
 					HashMap<String, Object> map = new HashMap<>();
 
-					for (String fieldName : Splitter.on(' ').trimResults().omitEmptyStrings().splitToList(updateField)) {
+					for (String fieldName : splitToList(updateField,' ')) {
 						Object value = BeanUtils.getPropertyDescriptor(CompanyVO.class, fieldName).getReadMethod().invoke(companyVO);
 						map.put(fieldName, value);
 						System.out.println(fieldName + "," + value);
 					}
 
-					 companyService.updateField(companyVO.getName(),map);
+					companyService.updateField(companyVO.getName(), map);
 				} else {
-					 companyVO.setLogo(upFile(picMap.get(companyVO.getRow())));
+					companyVO.setLogo(upFile(picMap.get(companyVO.getRow())));
 					System.out.println(companyVO.getRow() + "," + companyVO.getLogo() + "," + companyVO.getName());
-					 companyService.insertCompany(companyVO);
+					companyService.insertCompany(companyVO);
 				}
 
 			}
@@ -86,6 +88,11 @@ public class ExcelReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static List<String> splitToList(String str, char ch) {
+		String[] arr = str.split("" + ch);
+		return Arrays.stream(arr).filter(x -> x != null).collect(Collectors.toList());
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -141,7 +148,8 @@ public class ExcelReader {
 	}
 
 	public String upFile(File file) throws IOException {
-		if(file == null) return null;
+		if (file == null)
+			return null;
 		FileClient fc = MyFileUpload.upload(file);
 
 		if (fc.isUploadOk()) {

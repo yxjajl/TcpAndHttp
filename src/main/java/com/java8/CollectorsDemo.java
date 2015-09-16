@@ -75,6 +75,7 @@ public class CollectorsDemo {
 		Person key = new Person();
 		key.setId(3);
 		System.out.println("下标Integer :" + Arrays.binarySearch(dd, key, (a, b) -> a.getId() - b.getId()));
+
 	}
 }
 
@@ -116,4 +117,19 @@ class Person {
 		this.age = age;
 	}
 
+}
+
+class TimeComp {
+	private long start = 0;
+
+	public TimeComp() {
+		start = System.currentTimeMillis();
+	}
+
+	public long comsum() {
+		long now = System.currentTimeMillis();
+		long use = now - start;
+		start = now;
+		return use;
+	}
 }

@@ -2,9 +2,12 @@ package com.serviceAndDao;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
@@ -64,7 +67,7 @@ public class ServiceAndDaoGen {
 //			joiner.appendTo(whereid,str+" = "+"#{"+str+"}",null);
 //		}
 		String whereid = joiner.join(
-		Splitter.on(',').trimResults().omitEmptyStrings().splitToList(strKeyId).stream()
+				splitToList(strKeyId,',').stream()
 		.map(str->String.format("%s = #{%s}",str,str)).iterator());
 		
 		
@@ -74,6 +77,12 @@ public class ServiceAndDaoGen {
 		readFile(filePath + "MapperTemp.txt", param);
 
 	}
+	
+	public static List<String> splitToList(String str, char ch) {
+		String[] arr = str.split("" + ch);
+		return Arrays.stream(arr).filter(x -> x != null).collect(Collectors.toList());
+	}
+
 
 	public static String myreplace(String str, Map<String, String> param) {
 		String tmp = str;
