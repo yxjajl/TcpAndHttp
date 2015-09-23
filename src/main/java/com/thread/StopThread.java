@@ -3,7 +3,7 @@ package com.thread;
 import java.util.concurrent.TimeUnit;
 
 public class StopThread {
-	private static  boolean stopRequested = false;
+	private static volatile boolean stopRequested = false;
 
 	public static void main(String[] args) throws Exception {
 		Thread back = new Thread(new Runnable() {

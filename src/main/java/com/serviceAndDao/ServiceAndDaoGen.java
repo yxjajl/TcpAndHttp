@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 
@@ -38,6 +40,8 @@ public class ServiceAndDaoGen {
 	
 
 	public static void main(String[] args) throws Exception {
+		
+		splitToList("1,2,3,4,5,,7",',').forEach(System.out::println);
 
 		Map<String, String> param = new HashMap<>();
 		param.put(PACKAGE, strPack);
@@ -80,7 +84,7 @@ public class ServiceAndDaoGen {
 	
 	public static List<String> splitToList(String str, char ch) {
 		String[] arr = str.split("" + ch);
-		return Arrays.stream(arr).filter(x -> x != null).collect(Collectors.toList());
+		return Arrays.stream(arr).filter(x -> StringUtils.isNotBlank(x)).collect(Collectors.toList());
 	}
 
 

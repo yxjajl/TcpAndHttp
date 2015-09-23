@@ -3,3 +3,7 @@ encoding//doc/protocolbuffer\u7B14\u8BB0.txt=GBK
 encoding//doc/svn\u5B89\u88C5.txt=GBK
 encoding//doc/\u67E5\u770B\u6570\u636E\u5E93\u6570\u636E\u5360\u78C1\u76D8\u5927\u5C0F.txt=GBK
 encoding//doc/\u67E5\u7AEF\u53E3\u88AB\u8C01\u5360\u7528.txt=GBK
+encoding//src/main/java/com/ss/HeadSortDemo.java=GBK
+encoding//src/main/java/com/thread/CountDownLatchTest.java=GBK
+encoding//src/main/java/com/thread/CyclicBarrierTest.java=GBK
+encoding//src/main/java/com/tree/BinarySearchTree.java=GBK

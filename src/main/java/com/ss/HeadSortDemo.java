@@ -28,7 +28,7 @@ public class HeadSortDemo {
 	 *            对应数组
 	 */
 	private static void buildMaxHeap(int arr[]) {
-		for (int i = (arr.length - 1) / 2; i >= 0; i--) { // 必须从大到小
+		for (int i = (arr.length - 1 - 1) / 2; i >= 0; i--) { // 必须从大到小
 			maxHeapify(arr, i, arr.length - 1);
 		}
 	}

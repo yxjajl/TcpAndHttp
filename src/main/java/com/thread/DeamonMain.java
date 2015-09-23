@@ -1,5 +1,11 @@
 package com.thread;
 
+/**
+ * 守护线程(当虚拟机中所有的非守护线程结束时，守护线程也将终止)
+ * 
+ * @author Rick
+ *
+ */
 public class DeamonMain {
 
 	public Thread th1 = new Thread(() -> {

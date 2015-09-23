@@ -15,9 +15,11 @@ public class WenDa {
 		// testUserFriend();
 
 		// testGroupUsers();
-		testListUser();
+//		testListUser();
 //		testRegister();
 //		testEditUserInfo();
+		
+		testAA();
 	}
 
 	public static void testRegister() {
@@ -60,6 +62,19 @@ public class WenDa {
 //		postParamMap.put("one_line", "2");
 //		postParamMap.put("work_exp", "3");
 
+		String result = HttpUtil.post(url, postParamMap);
+		System.out.println(result);
+	}
+	
+	
+	public static void testAA() {
+		String url ="http://a1.easemob.com/12345678900/dianziquan123/token";
+		Map<String, String> postParamMap = new HashMap<String, String>();
+		//grant_type=client_credentials&client_id=YXA6eFTWoGDTEeWBM4PAFWXDLA&client_secret=YXA6N5Z7RF3WoM8_E1xipi9qvrYMH-I
+
+		postParamMap.put("grant_type", "client_credentials");
+		postParamMap.put("client_id", "YXA6eFTWoGDTEeWBM4PAFWXDLA");
+		postParamMap.put("client_secret", "YXA6N5Z7RF3WoM8_E1xipi9qvrYMH-I");
 		String result = HttpUtil.post(url, postParamMap);
 		System.out.println(result);
 	}
