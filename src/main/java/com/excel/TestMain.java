@@ -9,8 +9,8 @@ public class TestMain {
 		@SuppressWarnings("resource")
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:com/excel/applicationContext.xml");
 
-		// readExcel(context);
-		printSql(context);
+		 readExcel(context);
+//		printSql(context);
 		System.out.println("XXXXXXXXXXXXXX:end:XXXXXXXXXXXXX");
 
 	}

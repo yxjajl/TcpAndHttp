@@ -26,7 +26,6 @@ import com.excel.service.CompanyService;
 import com.excel.service.ConfigConstants;
 import com.excel.up.FileClient;
 import com.excel.vo.CompanyVO;
-import com.google.common.base.Splitter;
 
 @Component
 public class ExcelReader {
@@ -38,7 +37,7 @@ public class ExcelReader {
 	public void read() throws Exception {
 		companyService.initConfig();
 		System.out.println("+====config end=========+");
-		String excelFileName = "D:\\企业数据信息库.xls";
+		String excelFileName = "D:\\abc.xls";
 		String updateField = "";
 		boolean isUpdateField = false;
 		try {
@@ -224,8 +223,18 @@ public class ExcelReader {
 		companyVO.setCity(ConfigConstants.getCityID(arr[n++]));
 		companyVO.setTag(arr[n++]);
 		companyVO.setDetail(arr[n++]);
-		companyVO.setShort_name(companyVO.getName());
+		companyVO.setShort_name(rep(companyVO.getName()));
+		companyVO.setName(companyVO.getShort_name());
 
 		return companyVO;
+	}
+	
+	public static String rep(String str) {
+		str = str.trim();
+		str = str.replaceAll("\n", "");
+		str = str.replaceAll("\r", "");
+		str = str.replaceAll("\t", "");
+		str = str.replaceAll(" ", "");
+		return str;
 	}
 }
