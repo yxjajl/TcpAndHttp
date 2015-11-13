@@ -9,10 +9,21 @@
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<mybatis.version>1.1.0</mybatis.version>
 		<jdbc.version>5.1.36</jdbc.version>
-		<JAVA_HOME>E:\Java\jdk1.8.0_05</JAVA_HOME>
+		<JAVA_HOME>D:\java\jdk1.8.0_65</JAVA_HOME>
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.zxing</groupId>
@@ -81,6 +92,25 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+			<type>pom</type>
+		</dependency>
+		
+		<dependency>
+  <groupId>org.aspectj</groupId>
+  <artifactId>aspectjweaver</artifactId>
+  <version>1.7.4</version>
+</dependency>
+
+<dependency>
+  <groupId>org.aspectj</groupId>
+  <artifactId>aspectjrt</artifactId>
+  <version>1.7.3</version>
+</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>

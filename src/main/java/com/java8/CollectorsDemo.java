@@ -59,10 +59,12 @@ public class CollectorsDemo {
 		System.out.println("max:" + people.stream().collect(Collectors.maxBy((a, b) -> a.getId() - b.getId())).get().getId());
 
 		StringJoiner sj = new StringJoiner(":", "[", "]");
-		sj.setEmptyValue("Empty").add("George").add("Sally").add(" ").add("Fred").add(null).add("");
-		StringJoiner sj2 = new StringJoiner(",", "(", ")");
+		sj.setEmptyValue("Empty").add("George").add("Sally").add("").add("Fred").add(null).add("");
 		sj.add("hello").add("world").add("rick");
 		System.out.println("sj = " + sj);
+		
+		
+		StringJoiner sj2 = new StringJoiner(",", "(", ")");
 		StringJoiner sj3 = sj2.merge(sj);
 		System.out.println("sj3 = " + sj3);
 
