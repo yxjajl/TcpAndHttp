@@ -2,11 +2,16 @@ package com.annotation.springlock;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
-@Component
-@Aspect
+/**
+ * 此类与配置中的 matchBeforeAdvisor 配套成为一个简易aop拦截
+ * 
+ * @author shuxiaojun
+ *
+ */
+//@Component
+// @Aspect
 public class DlockInterceptor implements MethodInterceptor {
 
 	@Override
@@ -21,7 +26,6 @@ public class DlockInterceptor implements MethodInterceptor {
 
 			synchronized (dlock.value()) {
 				System.out.println(current.getName() + " start lock " + dlock.value());
-				Thread.sleep(20000L);
 				return invocation.proceed();
 			}
 		} catch (Throwable e) {

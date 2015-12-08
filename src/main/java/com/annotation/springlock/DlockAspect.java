@@ -1,7 +1,8 @@
 package com.annotation.springlock;
 
-import org.aspectj.lang.ProceedingJoinPoint;
+import java.lang.reflect.Method;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -9,15 +10,20 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
-//@Component
-//@Aspect
+/**
+ * 完整的注解aop实例
+ * 
+ * @author shuxiaojun
+ *
+ */
+@Component
+@Aspect
 public class DlockAspect {
-	// @Around(value = "execution(* me.lichunlong.spring.service.*.*(..)) &&
-	// @annotation(log)")
 
-	@Pointcut("execution(* com.annotation.springlock.*.*(..))")
+	@Pointcut("execution(* com.annotation.springlock.*.*(..)) && @annotation(com.annotation.springlock.Dlock)")
 	private void pointCutMethod() {
 	}
 
@@ -52,6 +58,16 @@ public class DlockAspect {
 	public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
 		System.out.println("进入方法---环绕通知");
 		Object o = pjp.proceed();
+		System.out.println("object name = " + pjp.getTarget().getClass().getSimpleName());
+		System.out.println("object name = " + pjp.getSourceLocation());
+		System.out.println("object name = " + pjp.getStaticPart().getKind());
+		System.out.println("object name = " + pjp.getThis().getClass().getSimpleName());
+
+		MethodSignature signature = (MethodSignature) pjp.getSignature();
+		Method method = signature.getMethod();
+		Dlock dlock = method.getAnnotation(Dlock.class);
+		System.out.println("dlock:"+dlock);
+
 		System.out.println("退出方法---环绕通知");
 		return o;
 	}

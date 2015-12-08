@@ -8,12 +8,11 @@
 	default-lazy-init="false">
 
 	<context:component-scan base-package="com.annotation.springlock" />
-	<!-- <aop:aspectj-autoproxy></aop:aspectj-autoproxy> -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 
-	<aop:aspectj-autoproxy proxy-target-class="true">
-		<aop:include name="dlockInterceptor" />
-	</aop:aspectj-autoproxy>
+	<!-- <aop:aspectj-autoproxy proxy-target-class="true"> <aop:include name="dlockInterceptor" 
+		/> </aop:aspectj-autoproxy> -->
 
 
 	<!-- <aop:config> <aop:pointcut id="log" expression="execution(* com.annotation.springlock.*(..))"/> 
@@ -21,14 +20,22 @@
 		method="before" /> <aop:after-returning pointcut-ref="log" method="afterReturning" 
 		/> </aop:aspect> </aop:config> -->
 
-	<!-- <bean id="matchBeforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"> 
-		<property name="pointcut"> <ref bean="pointcut" /> </property> <property 
-		name="advice"> <ref bean="dlockInterceptor" /> </property> </bean> -->
 
-	<bean id="matchBeforeAdvisor"
-		class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
-		<property name="expression" value="execution(* com.annotation.springlock.*.*(..))"></property>
-		<property name="advice" ref="dlockInterceptor"></property>
+<!-- 	<bean id="myPointcut"
+		class="org.springframework.aop.support.annotation.AnnotationMatchingPointcut">
+		<constructor-arg index="0"><null/></constructor-arg>
+		<constructor-arg index="1"
+			value="com.annotation.springlock.Dlock"></constructor-arg>
 	</bean>
+
+	<bean id="testAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="dlockInterceptor" />
+		<property name="pointcut" ref="myPointcut" />
+	</bean> -->
+
+	<!-- <bean id="matchBeforeAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor"> 
+		<property name="expression" value="execution(* com.annotation.springlock.*.*(..)) 
+		&& @annotation(com.annotation.springlock.Dlock)"></property> <property name="advice" 
+		ref="dlockInterceptor"></property> </bean> -->
 
 </beans>
