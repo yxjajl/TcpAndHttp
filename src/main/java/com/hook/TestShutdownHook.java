@@ -12,7 +12,6 @@ public class TestShutdownHook {
 	 */
 	public static void main(String[] args) {
 		ExecutorService service = Executors.newFixedThreadPool(2);
-		// 定义线程1
 		Runnable t1 = new Runnable() {
 			public void run() {
 				for (int i = 0; i < 10; i++) {
@@ -26,7 +25,6 @@ public class TestShutdownHook {
 				}
 			}
 		};
-		// 定义线程2
 		Runnable t2 = new Runnable() {
 			public void run() {
 				for (int i = 0; i < 10; i++) {
@@ -40,10 +38,17 @@ public class TestShutdownHook {
 				}
 			}
 		};
-		// 定义关闭线程
 		Thread shutdownThread = new Thread() {
 			public void run() {
-				service.shutdown();
+				service.shutdownNow();
+				System.out.println("service.isShutdown() = " + service.isTerminated());
+				while (!service.isShutdown()) {
+					try {
+						Thread.sleep(5000L);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 				System.out.println("shutdownThread...");
 				// synchronized (TestShutdownHook.class) {
 				// running = false;
@@ -52,7 +57,6 @@ public class TestShutdownHook {
 
 			}
 		};
-		// jvm关闭的时候先执行该线程钩子
 		Runtime.getRuntime().addShutdownHook(shutdownThread);
 		System.out.println("add...");
 		service.submit(t1);
@@ -66,7 +70,7 @@ public class TestShutdownHook {
 		}
 		// service.shutdown();
 		System.out.println("over");
-		System.exit(0);
+		System.exit(-1);
 
 	}
 }

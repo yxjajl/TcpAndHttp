@@ -77,7 +77,7 @@ public class CollectorsDemo {
 		Person key = new Person();
 		key.setId(3);
 		System.out.println("下标Integer :" + Arrays.binarySearch(dd, key, (a, b) -> a.getId() - b.getId()));
-
+		
 	}
 }
 
