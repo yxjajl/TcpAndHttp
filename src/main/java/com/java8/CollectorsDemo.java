@@ -28,7 +28,7 @@ public class CollectorsDemo {
 		people.add(p);
 
 		p = new Person();
-		p.setId(3);
+		p.setId(1);
 		p.setName("li");
 		p.setCity("sh");
 		p.setAge(60);

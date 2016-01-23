@@ -19,8 +19,8 @@ import java.net.URL;
 public class IpToCityUtil {
 	// 新浪接口速度快，优先用新浪的
 	// private static final String TAOBAO_URL = "http://ip.taobao.com/service/getIpInfo.php";
-	// private static final String BAIDU_URL = "http://apis.baidu.com/apistore/iplookupservice/iplookup"; //需要key
-	private static final String SINA_URL = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&";
+	 private static final String BAIDU_URL = "http://apis.baidu.com/apistore/iplookupservice/iplookup"; //需要key
+//	private static final String SINA_URL = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&";
 	private static final String searchCityKey = "city";
 
 	private static IpToCityUtil INSTANCE = new IpToCityUtil();
@@ -49,7 +49,7 @@ public class IpToCityUtil {
 	public String getAddresses(String content, String encodingString) throws UnsupportedEncodingException {
 		String strCity = null;
 		// String urlStr = "http://ip.taobao.com/service/getIpInfo.php";
-		String urlStr = SINA_URL;
+		String urlStr = BAIDU_URL;
 		// 从http://whois.pconline.com.cn取得IP所在的省市区信息
 		String returnStr = this.getResult(urlStr, content, encodingString);
 		if (returnStr != null) {
