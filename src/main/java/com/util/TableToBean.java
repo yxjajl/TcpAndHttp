@@ -6,7 +6,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.HashMap;
@@ -15,12 +14,11 @@ public class TableToBean {
 
 	public static void main(String[] args) throws Exception {
 
-		readTable("t_invest_record");
+		getTableInfo("t_profit");
 	}
 
-	public static void readTable(String tableName) throws Exception {
+	public static void getTableInfo(String tableName) throws Exception {
 		DBHelper dbHelper = DBHelper.getInstance();
-
 		dbHelper.getTableInfo(null, tableName);
 	}
 
@@ -56,9 +54,9 @@ class DBHelper {
 		DatabaseMetaData dbmd = conn.getMetaData();
 		ResultSet rs = dbmd.getColumns(null, schema, tableName, "%");
 		int count = rs.getMetaData().getColumnCount();
-		for (int i = 1; i < count; i++) {
-			System.out.println(rs.getMetaData().getColumnLabel(i));
-		}
+//		for (int i = 1; i < count; i++) {
+//			System.out.println(rs.getMetaData().getColumnLabel(i));
+//		}
 		System.out.println("-------------------------------------------------");
 		while (rs.next()) {
 			System.out.println(getBeanDefine(rs.getString("COLUMN_NAME"), rs.getInt("DATA_TYPE"), rs.getString("REMARKS")));
@@ -71,10 +69,10 @@ class DBHelper {
 		return String.format(strFormat, DBHelper.columnTypeToBeanType(columnType), columnName, remark);
 	}
 
-	public ResultSet exeSql(String sql) throws Exception {
-		pst = conn.prepareStatement(sql);// 准备执行语句
-		return pst.executeQuery();
-	}
+//	public ResultSet exeSql(String sql) throws Exception {
+//		pst = conn.prepareStatement(sql);// 准备执行语句
+//		return pst.executeQuery();
+//	}
 
 	public void close() {
 		try {
