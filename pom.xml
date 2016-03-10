@@ -9,7 +9,7 @@
 		<spring.version>4.2.0.RELEASE</spring.version>
 		<mybatis.version>1.1.0</mybatis.version>
 		<jdbc.version>5.1.36</jdbc.version>
-		<JAVA_HOME>D:\java\jdk1.8.0_65</JAVA_HOME>
+		<JAVA_HOME>D:\Java\jdk1.8.0_74</JAVA_HOME>
 	</properties>
 
 	<dependencies>
@@ -28,8 +28,14 @@
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
-			<version>3.2.1</version>
+			<version>3.0.0</version>
 		</dependency>
+		
+		<dependency>  
+            <groupId>com.google.zxing</groupId>  
+            <artifactId>javase</artifactId>  
+            <version>3.0.0</version>  
+        </dependency>  
 
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
@@ -99,18 +105,18 @@
 			<version>${spring.version}</version>
 			<type>pom</type>
 		</dependency>
-		
-		<dependency>
-  <groupId>org.aspectj</groupId>
-  <artifactId>aspectjweaver</artifactId>
-  <version>1.7.4</version>
-</dependency>
 
-<dependency>
-  <groupId>org.aspectj</groupId>
-  <artifactId>aspectjrt</artifactId>
-  <version>1.7.3</version>
-</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.7.3</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
