@@ -14,7 +14,7 @@ public class CronTest {
   
     private static void cronTest() {  
         try {  
-            CronExpression exp = new CronExpression("10 0 15-13 * * ?");  
+            CronExpression exp = new CronExpression("0 55 8 ? * MON-FRI");  
             SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");  
             Date d = new Date();  
             int i = 0;  

@@ -17,15 +17,15 @@ public class CompletionServiceTest {
 		for (int index = 0; index < 5; index++) {
 			final int NO = index;
 			// Callable 接口类似于 Runnable
-//			Callable<String> downImg = new Callable<String>() {
-//				public String call() throws Exception {
-//					Thread.sleep((long) (Math.random() * 10000));
-//					return "Downloaded Image " + NO;
-//				}
-//			};
+			// Callable<String> downImg = new Callable<String>() {
+			// public String call() throws Exception {
+			// Thread.sleep((long) (Math.random() * 10000));
+			// return "Downloaded Image " + NO;
+			// }
+			// };
 			// 提交要执行的值返回任务，并返回表示挂起的任务结果的 Future。在完成时，可能会提取或轮询此任务。
-//			serv.submit(downImg);
-			
+			// serv.submit(downImg);
+
 			Runnable downImg = new Runnable() {
 				public void run() {
 					try {
@@ -35,10 +35,10 @@ public class CompletionServiceTest {
 					}
 				}
 			};
-			
+
 			serv.submit(downImg, "Downloaded Image " + NO);
-			
-			size ++ ;
+
+			size++;
 		}
 		Thread.sleep(1000 * 2);
 		System.out.println("Show web content");
@@ -47,7 +47,7 @@ public class CompletionServiceTest {
 			Future<String> task = serv.take();
 			// 如有必要，等待计算完成，然后获取其结果。
 			String img = task.get();
-			System.out.println("a:"+img);
+			System.out.println("a:" + img);
 		}
 		System.out.println("End");
 		// 关闭线程池

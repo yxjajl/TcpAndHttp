@@ -97,6 +97,7 @@ class DBHelper {
 		commonMap.put(Types.INTEGER, int.class.getSimpleName());
 		commonMap.put(Types.SMALLINT, int.class.getSimpleName());
 		commonMap.put(Types.TINYINT, int.class.getSimpleName());
+		commonMap.put(Types.NUMERIC, int.class.getSimpleName());
 
 		commonMap.put(Types.VARCHAR, String.class.getSimpleName());
 		commonMap.put(Types.CHAR, String.class.getSimpleName());

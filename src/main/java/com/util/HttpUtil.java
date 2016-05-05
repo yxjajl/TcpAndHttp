@@ -198,7 +198,13 @@ public class HttpUtil {
 		client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 15000);// 连接时间
 		client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 15000);// 数据传输时间
 		HttpPost post = new HttpPost(url);
-//		 post.setHeader("Content-Type", "application/json");
+
+		String ip = "10.141.139.168";
+		post.setHeader("X-Forwarded-For", ip);
+		post.setHeader("HTTP_X_FORWARDED_FOR", ip);
+		post.setHeader("HTTP_CLIENT_IP", ip);
+		post.setHeader("REMOTE_ADDR", ip);
+		//		 post.setHeader("Content-Type", "application/json");
 		StringBuilder sb = new StringBuilder();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
 		for (Map.Entry<String, String> entry : params.entrySet()) {

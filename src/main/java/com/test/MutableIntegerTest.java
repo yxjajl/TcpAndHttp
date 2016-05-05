@@ -3,8 +3,10 @@ package com.test;
 import java.time.Clock;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
@@ -12,8 +14,10 @@ import org.apache.commons.lang.mutable.MutableInt;
 
 public class MutableIntegerTest {
 
-	final static String source = "my name is name me and your name is her first her , is me";
+	final static String source = "name name name name name , is me";
+
 	final static String[] words = source.split(" ");
+
 	final static int max = 10000000;
 
 	static Consumer<HashMap<String, int[]>> printer = map -> {
@@ -21,7 +25,8 @@ public class MutableIntegerTest {
 			if (v instanceof int[]) {
 				int[] a = (int[]) v;
 				System.out.println(k + "," + a[0]);
-			} else {
+			}
+			else {
 				System.out.println(k + "," + v.toString());
 			}
 		});
@@ -34,12 +39,12 @@ public class MutableIntegerTest {
 		System.out.println(System.currentTimeMillis());
 		System.out.println(Clock.systemDefaultZone().millis());
 		LocalTime now1 = LocalTime.now();
-		
+
 		LocalTime now2 = LocalTime.now();
 		long hoursBetween = ChronoUnit.SECONDS.between(now1, now2);
 		System.out.println(hoursBetween); // -3
-		// testBetter(words);
-		testtest();
+		testEfficient(words);
+		// testEfficient();
 
 	}
 
@@ -75,7 +80,8 @@ public class MutableIntegerTest {
 		BiFunction<String, MutableInt, MutableInt> bf = (k, v) -> {
 			if (v == null) {
 				return new MutableInt(1);
-			} else {
+			}
+			else {
 				v.setValue(v.intValue() + 1);
 				return v;
 			}
@@ -97,11 +103,13 @@ public class MutableIntegerTest {
 		}
 	}
 
+
 	public static void testH(String[] words) {
 		BiFunction<String, int[], int[]> bf = (k, v) -> {
 			if (v == null) {
 				return new int[] { 1 };
-			} else {
+			}
+			else {
 				v[0]++;
 				return v;
 			}
