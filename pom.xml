@@ -15,6 +15,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.4.6</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>2.2.2</version>
@@ -30,12 +36,12 @@
 			<artifactId>core</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
-		<dependency>  
-            <groupId>com.google.zxing</groupId>  
-            <artifactId>javase</artifactId>  
-            <version>3.0.0</version>  
-        </dependency>  
+
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.lucene</groupId>

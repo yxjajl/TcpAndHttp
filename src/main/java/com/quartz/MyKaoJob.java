@@ -18,7 +18,7 @@ public class MyKaoJob implements Job {
 		// date and time that it is running
 		JobKey jobKey = context.getJobDetail().getKey();
 		System.out.println("SimpleJob says: " + jobKey + " executing at " + new Date());
-//		kaoqin();
+		kaoqin();
 	}
 
 	public static void kaoqin() {

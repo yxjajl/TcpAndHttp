@@ -28,7 +28,7 @@ public class CronTriggerExample {
 		Scheduler sched = sf.getScheduler();
 
 		JobDetail job = newJob(MyKaoJob.class).withIdentity("job1", "group1").build();
-		CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule("0 55 8 ? * MON-FRI")).build();
+		CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule("0 50 8 ? * MON-FRI")).build();
 		//0/2 * * * * ?
 
 		Date ft = sched.scheduleJob(job, trigger);
