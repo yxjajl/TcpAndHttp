@@ -65,7 +65,7 @@ public class NetUtil {
 		return flag;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(NetUtil.isLoclePortUsing(843));
+	public static void main(String[] args)throws Exception {
+		System.out.println(NetUtil.isPortUsing("58.222.254.11",3128));
 	}
 }

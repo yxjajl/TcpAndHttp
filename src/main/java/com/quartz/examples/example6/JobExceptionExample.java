@@ -78,7 +78,7 @@ public class JobExceptionExample {
     trigger = newTrigger().withIdentity("trigger2", "group1").startAt(startTime)
         .withSchedule(simpleSchedule().withIntervalInSeconds(5).repeatForever()).build();
 
-//    ft = sched.scheduleJob(job, trigger);
+    ft = sched.scheduleJob(job, trigger);
     log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
              + trigger.getRepeatInterval() / 1000 + " seconds");
 

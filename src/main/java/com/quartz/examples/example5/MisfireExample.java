@@ -72,20 +72,16 @@ public class MisfireExample {
 
     // statefulJob1 will run every three seconds
     // (but it will delay for ten seconds)
-    JobDetail job = newJob(StatefulDumbJob.class).withIdentity("statefulJob1", "group1")
-        .usingJobData(StatefulDumbJob.EXECUTION_DELAY, 10000L).build();
+    JobDetail job = newJob(StatefulDumbJob.class).withIdentity("statefulJob1", "group1").usingJobData(StatefulDumbJob.EXECUTION_DELAY, 10000L).build();
 
-    SimpleTrigger trigger = newTrigger().withIdentity("trigger1", "group1").startAt(startTime)
-        .withSchedule(simpleSchedule().withIntervalInSeconds(3).repeatForever()).build();
+    SimpleTrigger trigger = newTrigger().withIdentity("trigger1", "group1").startAt(startTime).withSchedule(simpleSchedule().withIntervalInSeconds(3).repeatForever()).build();
 
     Date ft = sched.scheduleJob(job, trigger);
-    log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every "
-             + trigger.getRepeatInterval() / 1000 + " seconds");
+    log.info(job.getKey() + " will run at: " + ft + " and repeat: " + trigger.getRepeatCount() + " times, every " + trigger.getRepeatInterval() / 1000 + " seconds");
 
     // statefulJob2 will run every three seconds
     // (but it will delay for ten seconds - and therefore purposely misfire after a few iterations)
-    job = newJob(StatefulDumbJob.class).withIdentity("statefulJob2", "group1")
-        .usingJobData(StatefulDumbJob.EXECUTION_DELAY, 10000L).build();
+    job = newJob(StatefulDumbJob.class).withIdentity("statefulJob2", "group1") .usingJobData(StatefulDumbJob.EXECUTION_DELAY, 10000L).build();
 
     trigger = newTrigger()
         .withIdentity("trigger2", "group1")

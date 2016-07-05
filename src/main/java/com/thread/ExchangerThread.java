@@ -30,7 +30,7 @@ class MyThread extends Thread {
 
 	public void run() {
 		try {
-			System.out.println(this.getName() + ex.exchange(str));
+			System.out.println(this.getName() +"," + ex.exchange(str));
 		} catch (Exception e) {
 		}
 	}
