@@ -20,7 +20,7 @@ def tt1() {
 	println s1 <=> s2
 
 	def  x = "hello world_rick"
-
+	//动态添加类方法
 	String.metaClass.title ={
 		->
 		def sb = new StringBuffer()
