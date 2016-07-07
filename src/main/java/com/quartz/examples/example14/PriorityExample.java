@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 
 /**
+ * 演示如何触发优先级可以用于管理同一个消防时间触发器的触发顺序
  * This Example will demonstrate how Triggers are ordered by priority.
  */
 public class PriorityExample {

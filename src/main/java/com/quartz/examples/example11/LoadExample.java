@@ -31,7 +31,7 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
+/**f 可以运行很多的工作，但看看线程池可以限制多少个工作可以同时执行
  * This example will spawn a large number of jobs to run
  * 
  * @author James House, Bill Kratzer
