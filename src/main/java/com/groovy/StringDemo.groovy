@@ -19,6 +19,35 @@ def tt1() {
 	println s1 <=> s2 == 1 ? "Same" : "Different"		// 执行s1.compareTo(s2)
 	println s1 <=> s2
 
+	def  x = "hello world_rick"
+
+	String.metaClass.title ={
+		->
+		def sb = new StringBuffer()
+		def first = true;
+		delegate.each {
+			if(first) {
+				if( Character.isLetter(it as char)) {
+					sb << it.toUpperCase();
+					first = false
+				} else {
+					sb << it
+				}
+			} else {
+				if( Character.isLetter(it as char)) {
+					sb << it
+				} else {
+					sb << it
+					first = true
+				}
+			}
+		}
+		sb.toString()
+	}
+
+	println "xtitle:"+ x.title()
+
+
 }
 
 def tt2() {
@@ -92,4 +121,4 @@ def tt3() {
 }
 
 
-tt3();
+tt1();
