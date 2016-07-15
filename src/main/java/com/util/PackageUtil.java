@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 
 public class PackageUtil {
 	public static void main(String[] args) throws Exception {
-		Runtime.getRuntime().exec("cmd /k del C:\\Users\\Administrator.HX15011009\\Desktop\\war\\*.* /Q");
-		Runtime.getRuntime().exec("cmd /k cd C:\\Users\\Administrator.HX15011009\\Desktop\\war\\ ");
+		//Runtime.getRuntime().exec("cmd /k del C:\\Users\\Administrator.HX15011009\\Desktop\\war\\*.* /Q");
+		//Runtime.getRuntime().exec("cmd /k cd C:\\Users\\Administrator.HX15011009\\Desktop\\war\\ ");
 
 		Process process = Runtime.getRuntime().exec("cmd /k dir");
 
@@ -25,7 +25,7 @@ class StreamDrainer implements Runnable {
 
 	public void run() {
 		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(ins));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(ins,"GBK"));
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				System.out.println(line);

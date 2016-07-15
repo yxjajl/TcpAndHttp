@@ -1,10 +1,24 @@
 package com.groovy
 
-import java.math.BigDecimal;
-import java.sql.Types;
-
 import groovy.sql.Sql
 
+import java.sql.Types
+
+
+commonMap = [:]
+commonMap.put(Types.BIGINT, long.class.getSimpleName());
+commonMap.put(Types.INTEGER, int.class.getSimpleName());
+commonMap.put(Types.SMALLINT, int.class.getSimpleName());
+commonMap.put(Types.TINYINT, int.class.getSimpleName());
+commonMap.put(Types.NUMERIC, int.class.getSimpleName());
+commonMap.put(Types.VARCHAR, String.class.getSimpleName());
+commonMap.put(Types.CHAR, String.class.getSimpleName());
+commonMap.put(Types.DECIMAL, BigDecimal.class.getSimpleName());
+commonMap.put(Types.DATE, java.util.Date.class.getSimpleName());
+commonMap.put(Types.TIMESTAMP, java.util.Date.class.getSimpleName());
+def getTypeString(type) {
+	return commonMap[type]
+}
 
 def getDB() {
 	return DBType.ORACLEL.getInstance("10.140.161.12:1521:orcl","ams","ams");
@@ -76,20 +90,7 @@ String.metaClass.title ={
 String.metaClass.mod = { List list ->
 	String.format(delegate, list as Object[])
 }
-commonMap = [:]
-commonMap.put(Types.BIGINT, long.class.getSimpleName());
-commonMap.put(Types.INTEGER, int.class.getSimpleName());
-commonMap.put(Types.SMALLINT, int.class.getSimpleName());
-commonMap.put(Types.TINYINT, int.class.getSimpleName());
-commonMap.put(Types.NUMERIC, int.class.getSimpleName());
-commonMap.put(Types.VARCHAR, String.class.getSimpleName());
-commonMap.put(Types.CHAR, String.class.getSimpleName());
-commonMap.put(Types.DECIMAL, BigDecimal.class.getSimpleName());
-commonMap.put(Types.DATE, java.util.Date.class.getSimpleName());
-commonMap.put(Types.TIMESTAMP, java.util.Date.class.getSimpleName());j
-def getTypeString(type) {
-	return commonMap[type]
-}
+
 map.each { k,v ->
 	def sformat = "private %s %s;"
 	println sformat % [getTypeString(v), k.toLowerCase().title().replaceAll("_","")]

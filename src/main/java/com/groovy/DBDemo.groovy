@@ -1,6 +1,7 @@
 package com.groovy
 
-import groovy.sql.Sql;
+import groovy.sql.Sql
+import oracle.sql.CLOB;;
 
 class DBDemo {
 	static main(args) {
@@ -10,22 +11,26 @@ class DBDemo {
 	static def test2() {
 		def db= Sql.newInstance(
 				"jdbc:oracle:thin:@10.140.161.12:1521:orcl",
-				"ams",
-				"ams",
+				"ECSAPP",
+				"ECS123",
 				"oracle.jdbc.driver.OracleDriver");
-		def openid = 'oKccnuBlFWPkPHqkqFpfBKaIKma4'
-		def firstrow =db.firstRow("select * from ams_user where openid = ?",[openid]);
+		//def openid = 'oKccnuBlFWPkPHqkqFpfBKaIKma4'
+		//def firstrow =db.firstRow("select * from ams_user where openid = ?",[openid]);
 		//		def firstrow = db.firstRow("select * from ams_user where openid = '$openid'");
-		println firstrow.userid
+		//println firstrow.userid
 
 		//		db.query("select * from ams_user where rownum <=5",{
 		//				while(it.next()){println it.getString("userid")}
 		//		});
 
 
-		//		db.eachRow("select * from ams_user where rownum <=5") {
-		//			println it.userid
-		//		}
+		
+		def orders=db.query ("select tempname,tempcontent from GE_SYSTEM_TEMPLATE where temptypecode = 'PdfTemp'",{
+			while(it.next()){
+				println "orderno is "+it.getString("tempname");
+				println "orderCode is "+it.getString("tempcontent");
+			}
+		});
 
 		// dataset没测通暂时不要用
 		//		def dso= db.dataSet('AMS_USER')
