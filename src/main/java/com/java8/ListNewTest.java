@@ -14,7 +14,8 @@ import com.google.common.collect.Lists;
 public class ListNewTest {
 
 	public static void main(String[] args) {
-		test5();
+//		test5();
+		test6();
 	}
 
 	public static void test1() {
@@ -65,6 +66,12 @@ public class ListNewTest {
 				subv.forEach(p -> System.out.println(p.getId()));
 			});
 		});
+	}
+
+	public static void test6() {
+		List<Integer> nums = Lists.newArrayList(1, 1, null, 2, 3, 4, null, 5, 6, 7, 8, 9, 10);
+		List<Integer> numsWithoutNull = nums.stream().filter(num -> num != null).collect(ArrayList::new, ArrayList::add, (list1, list2) -> list1.addAll(list2));
+		System.out.println(numsWithoutNull + "," + numsWithoutNull.size());
 	}
 
 	public static void test5() {

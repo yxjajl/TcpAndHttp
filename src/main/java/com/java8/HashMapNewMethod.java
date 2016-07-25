@@ -20,7 +20,7 @@ public class HashMapNewMethod {
 	}
 
 	public static void test1() {
-		System.out.println("============test1===================");
+		System.out.println("============test1==往map中放值======类似put===========");
 		HashMap<String, Integer> map = mapSupplier.get();
 		map.compute("1", (k, v) -> v == null ? 1 : v + 1);
 		map.compute("5", (k, v) -> v == null ? 1 : v + 1);
@@ -28,7 +28,7 @@ public class HashMapNewMethod {
 	}
 
 	public static void test2() {
-		System.out.println("============test2===================");
+		System.out.println("============test2========如果map中没有key,则放入key和value===========");
 		HashMap<String, Integer> map = mapSupplier.get();
 		map.computeIfAbsent("1", k -> 20);
 		map.computeIfAbsent("5", k -> 30);
@@ -36,7 +36,7 @@ public class HashMapNewMethod {
 	}
 
 	public static void test3() {
-		System.out.println("============test3===================");
+		System.out.println("============test3====key存在才改变value===============");
 		HashMap<String, Integer> map = mapSupplier.get();
 		map.computeIfPresent("1", (k, v) -> v == null ? 1 : v + 1);
 		map.computeIfPresent("5", (k, v) -> v == null ? 1 : v + 1);

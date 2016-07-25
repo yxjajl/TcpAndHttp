@@ -1,4 +1,4 @@
-package com.groovy
+package com.groovy.utils
 
 def tt() {
 	def fn = /C:\Users\r6yuxx\Desktop\tmp\test.txt/
@@ -13,6 +13,7 @@ def tt() {
 	//		}
 
 	file.eachLine { println it }
+	
 }
 
 tt();

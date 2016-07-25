@@ -7,18 +7,16 @@ import java.util.Random;
 public class HashTest {
 
 	public static void main(String[] args) {
-		HashSet<Integer> hash = new HashSet<Integer>();
-		Random random = new Random();
-		while (hash.size() != 6) {
-			int randomValue = random.nextInt(33) + 1;
-			hash.add(randomValue);
-		}
-		String result = "结果是:";
-		for (Integer i : hash) {
-			result += i + " ";
-		}
-		System.out.println(result);
-
+		HashSet<String> hash = new HashSet<>();
+		
+		hash.add("3");
+		hash.add("3");
+		hash.add(null);
+		hash.add(null);
+		
+		for(int i= 0;i < 5; i++)
+		hash.add(""+i);
+		
 		Iterator ir = hash.iterator();
 		while (ir.hasNext()) {
 			System.out.println(ir.next());

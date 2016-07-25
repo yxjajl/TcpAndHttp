@@ -47,14 +47,14 @@ public class CollectorsDemo {
 		System.out.println("average:" + average);
 
 		Map<Integer, List<Person>> byDept = people.stream().collect(Collectors.groupingBy(Person::getId));
-		System.out.println(byDept);
+		System.out.println("byDept:" + byDept);
 
 		// Map<Integer, String> toMap =
 		// people.stream().collect(Collectors.toMap(Person::getId,
 		// Person::getName));
 		// System.out.println(toMap);
 
-		Map<Integer, String> toMap2 = people.stream().collect(Collectors.toMap(Person::getId, Person::getName, (a, b) -> a + b));
+		Map<Integer, String> toMap2 = people.stream().collect(Collectors.toMap(Person::getId, Person::getName, (a, b) -> a + "," + b));
 		System.out.println("toMap2:" + toMap2);
 		System.out.println("max:" + people.stream().collect(Collectors.maxBy((a, b) -> a.getId() - b.getId())).get().getId());
 
@@ -62,8 +62,7 @@ public class CollectorsDemo {
 		sj.setEmptyValue("Empty").add("George").add("Sally").add("").add("Fred").add(null).add("");
 		sj.add("hello").add("world").add("rick");
 		System.out.println("sj = " + sj);
-		
-		
+
 		StringJoiner sj2 = new StringJoiner(",", "(", ")");
 		StringJoiner sj3 = sj2.merge(sj);
 		System.out.println("sj3 = " + sj3);
@@ -77,7 +76,7 @@ public class CollectorsDemo {
 		Person key = new Person();
 		key.setId(3);
 		System.out.println("下标Integer :" + Arrays.binarySearch(dd, key, (a, b) -> a.getId() - b.getId()));
-		
+
 	}
 }
 
@@ -120,5 +119,3 @@ class Person {
 	}
 
 }
-
-
