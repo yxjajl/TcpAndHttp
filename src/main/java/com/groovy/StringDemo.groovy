@@ -8,7 +8,9 @@ def tt1() {
 	println s
 	s = 'c:\tindows\tystem'
 	println s
-
+	s="""123456"""
+	println "aaaaaaa"+ s[0..-1]
+	
 	s1 = new String("Abc")
 	s2 = new String("abc")
 
@@ -122,3 +124,6 @@ def tt3() {
 
 
 tt1();
+//tt2();
+//tt3();
+//ffor();

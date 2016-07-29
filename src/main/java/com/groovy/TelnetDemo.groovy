@@ -5,10 +5,10 @@ import com.util.HttpUtil
 
 class TelnetDemo {
 	static main(args) {
-		def zh = """http://www.proxy360.cn/default.aspx/"""
+		def zh = """http://www.proxy360.cn/Proxy"""
 		def am = """http://www.proxy360.cn/Region/America"""
 		def jpn = """http://www.proxy360.cn/Region/Japan"""
-		def pageContent = HttpUtil.sendGet(am);// 
+		def pageContent = HttpUtil.sendGet(zh);// 
 		def replist= [
 			"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"""
 			,
