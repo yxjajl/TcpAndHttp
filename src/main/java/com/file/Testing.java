@@ -10,8 +10,7 @@ public class Testing {
 	public static void main(String[] args) {
 
 		HashMap<String, Double> map = new HashMap<String, Double>();
-		ValueComparator bvc = new ValueComparator(map);
-		TreeMap<String, Double> sorted_map = new TreeMap<String, Double>(bvc);
+		TreeMap<String, Double> sorted_map = new TreeMap<String, Double>(new ValueComparator(map));
 
 		map.put("A", 100.5);
 		map.put("B", 10.4);

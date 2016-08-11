@@ -1,6 +1,7 @@
 package com.groovy.utils
 
 class StringUtils {
+	//函数动态添加方法可能要用到  ExpandoMetaClass.enableGlobally()
 	//创建title函数 (单词首字母大写)
 	static def useTitle() {
 		String.metaClass.title ={

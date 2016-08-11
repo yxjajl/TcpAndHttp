@@ -31,6 +31,8 @@ class AmsAddressTest {
 		println ((x+URLEncoder.encode(url2,"utf-8")).replaceAll("%26","&").replaceAll("%3D","="))
 		println ((x+URLEncoder.encode(url3,"utf-8")).replaceAll("%26","&").replaceAll("%3D","="))
 		//println URLDecoder.decode(url4,"utf-8")
+		
+		println URLDecoder.decode(/http%3A%2F%2Fm.cignacmb.com%2Fdrupal%2F%3Fq%3Dnode%26destination%3Dnode/,"utf-8")
 
 	}
 }

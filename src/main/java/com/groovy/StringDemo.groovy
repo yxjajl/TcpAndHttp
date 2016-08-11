@@ -1,5 +1,15 @@
 package com.groovy
 
+//groovy 几个特殊符号
+//.& 取函数 def say = new Class().&say
+//*  放在list或map 前可取出list的所有值  (方便传参)
+//*. 一个集合使用展开运算符(*.)可以得到一个元素为原集合各个元素执行后面指定方法所得值的集合
+//?: 类似三目运算符
+//?. 用于非空取对像属性值 (如果对象不为空则取其属性，否则返回null)
+//.@ 用于直接读取对像属性 不采用get方法
+//${obj.name}与$obj.name相同，通过get方法取属性值
+
+
 def tt1() {
 	//取消转议
 	s = /c:\tindows\tystem但 \n 字符\n不包含在内/
@@ -10,7 +20,7 @@ def tt1() {
 	println s
 	s="""123456"""
 	println "aaaaaaa"+ s[0..-1]
-	
+
 	s1 = new String("Abc")
 	s2 = new String("abc")
 
@@ -68,6 +78,12 @@ static def pairWise(list, Closure invoke) {
 def ffor() {
 	def list = ["Lars", "Ben", "Jack"]
 	list.each{ print it }
+	println ""
+
+	//*list取出list中的所有值
+	def list2 =[*list, "last"]
+	list2.each{ print it }
+	println ""
 
 	5.times { ss->print "Times + $ss " }
 	1.upto(3) { println "Up + $it " }
@@ -91,8 +107,8 @@ class Person{
 	}
 
 	def getName() {
-		//println "Getting Name"
-		name
+		println "Getting Name"
+		"1"+name
 	}
 }
 def tt3() {
@@ -119,11 +135,11 @@ def tt3() {
 	//写的getName
 	println todo.name + "${todo.name}" + "$todo.name"
 	//pojo的getName
-	println todo.@name
+	println "@==="+todo.@name
 }
 
 
-tt1();
+//tt1();
 //tt2();
-//tt3();
+tt3();
 //ffor();
