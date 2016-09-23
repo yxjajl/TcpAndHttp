@@ -1,12 +1,20 @@
 package com.util;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.math.RandomUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import com.utf8.ConverFromGBKToUTF8;
 
 public class IdCardUtil {
 
@@ -18,18 +26,18 @@ public class IdCardUtil {
 	 * @throws ParseException
 	 */
 	public String IDCardValidate(String IDStr) throws ParseException {
-		String errorInfo = "";// 记录错误信息   
+		String errorInfo = "";// 记录错误信息
 		String[] ValCodeArr = { "1", "0", "x", "9", "8", "7", "6", "5", "4", "3", "2" };
 		String[] Wi = { "7", "9", "10", "5", "8", "4", "2", "1", "6", "3", "7", "9", "10", "5", "8", "4", "2" };
 		String Ai = "";
-		// ================ 号码的长度 15位或18位 ================   
+		// ================ 号码的长度 15位或18位 ================
 		if (IDStr.length() != 15 && IDStr.length() != 18) {
 			errorInfo = "身份证号码长度应该为15位或18位。";
 			return errorInfo;
 		}
-		// =======================(end)========================   
+		// =======================(end)========================
 
-		// ================ 数字 除最后以为都为数字 ================   
+		// ================ 数字 除最后以为都为数字 ================
 		if (IDStr.length() == 18) {
 			Ai = IDStr.substring(0, 17);
 		} else if (IDStr.length() == 15) {
@@ -39,12 +47,12 @@ public class IdCardUtil {
 			errorInfo = "身份证15位号码都应为数字 ; 18位号码除最后一位外，都应为数字。";
 			return errorInfo;
 		}
-		// =======================(end)========================   
+		// =======================(end)========================
 
-		// ================ 出生年月是否有效 ================   
-		String strYear = Ai.substring(6, 10);// 年份   
-		String strMonth = Ai.substring(10, 12);// 月份   
-		String strDay = Ai.substring(12, 14);// 月份   
+		// ================ 出生年月是否有效 ================
+		String strYear = Ai.substring(6, 10);// 年份
+		String strMonth = Ai.substring(10, 12);// 月份
+		String strDay = Ai.substring(12, 14);// 月份
 		if (isDataFormat(strYear + "-" + strMonth + "-" + strDay) == false) {
 			errorInfo = "身份证生日无效。";
 			return errorInfo;
@@ -64,17 +72,17 @@ public class IdCardUtil {
 			errorInfo = "身份证日期无效";
 			return errorInfo;
 		}
-		// =====================(end)=====================   
+		// =====================(end)=====================
 
-		// ================ 地区码时候有效 ================   
+		// ================ 地区码时候有效 ================
 		Hashtable<String, String> h = GetAreaCode();
 		if (h.get(Ai.substring(0, 2)) == null) {
 			errorInfo = "身份证地区编码错误。";
 			return errorInfo;
 		}
-		// ==============================================   
+		// ==============================================
 
-		// ================ 判断最后一位的值 ================   
+		// ================ 判断最后一位的值 ================
 		int TotalmulAiWi = 0;
 		for (int i = 0; i < 17; i++) {
 			TotalmulAiWi = TotalmulAiWi + Integer.parseInt(String.valueOf(Ai.charAt(i))) * Integer.parseInt(Wi[i]);
@@ -91,7 +99,7 @@ public class IdCardUtil {
 		} else {
 			return "";
 		}
-		// =====================(end)=====================   
+		// =====================(end)=====================
 		return "";
 	}
 
@@ -164,7 +172,7 @@ public class IdCardUtil {
 	 */
 	public boolean isDataFormat(String str) {
 		boolean flag = false;
-		//String regxStr="[1-9][0-9]{3}-[0-1][0-2]-((0[1-9])|([12][0-9])|(3[01]))";
+		// String regxStr="[1-9][0-9]{3}-[0-1][0-2]-((0[1-9])|([12][0-9])|(3[01]))";
 		String regxStr = "^((\\d{2}(([02468][048])|([13579][26]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])))))|(\\d{2}(([02468][1235679])|([13579][01345789]))[\\-\\/\\s]?((((0?[13578])|(1[02]))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(3[01])))|(((0?[469])|(11))[\\-\\/\\s]?((0?[1-9])|([1-2][0-9])|(30)))|(0?2[\\-\\/\\s]?((0?[1-9])|(1[0-9])|(2[0-8]))))))(\\s(((0?[0-9])|([1-2][0-3]))\\:([0-5]?[0-9])((\\s)|(\\:([0-5]?[0-9])))))?$";
 		Pattern pattern1 = Pattern.compile(regxStr);
 		Matcher isNo = pattern1.matcher(str);
@@ -174,10 +182,50 @@ public class IdCardUtil {
 		return flag;
 	}
 
-	public static void main(String[] args) throws ParseException {
-		System.out.println("=="+new IdCardUtil().IDCardValidate("360600198211083215"));
-		//返回值为""表示正确
-		for(int i = 0;i < 10 ; i ++)
-		System.out.println(new IdCardUtil().IDCardValidate("36060019821108321"+i));
+	public static void main(String[] args) throws Exception {
+		System.out.println("田" + getRandomJianHan(2));
+
+		System.out.println(getRandomCard("1983"));
+		System.out.println("138" + RandomStringUtils.random(8, false, true));
+	}
+
+	public static String getRandomCard(String year) throws ParseException {
+		String month = StringUtils.leftPad("" + RandomUtils.nextInt(12), 2, '0');
+		String day = StringUtils.leftPad("" + RandomUtils.nextInt(30), 2, '0');
+		IdCardUtil util = new IdCardUtil();
+		String str = "540101"+year + month + day + RandomStringUtils.random(3, false, true);
+		// 返回值为""表示正确
+		for (int i = 0; i < 10; i++) {
+			//System.out.println(str + i+":"+util.IDCardValidate(str + i));
+			if ("".equals(util.IDCardValidate(str + i))) {
+				return str + i;
+			}
+		}
+		return null;
+	}
+
+	public static String getRandomJianHan(int len) throws UnsupportedEncodingException {
+		String ret = "";
+		for (int i = 0; i < len; i++) {
+			String str = null;
+			int hightPos, lowPos; // 定义高低位
+			Random random = new Random();
+			hightPos = (176 + Math.abs(random.nextInt(39))); // 获取高位值
+			lowPos = (161 + Math.abs(random.nextInt(93))); // 获取低位值
+			byte[] b = new byte[2];
+			b[0] = (new Integer(hightPos).byteValue());
+			b[1] = (new Integer(lowPos).byteValue());
+			try {
+				str = new String(b, "GBK"); // 转成中文
+			} catch (UnsupportedEncodingException ex) {
+				ex.printStackTrace();
+			}
+			ret += str;
+		}
+
+		ConverFromGBKToUTF8 convert = new ConverFromGBKToUTF8();
+		byte[] fullByte = convert.getUTF8BytesFromGBKString(ret);
+		ret = new String(fullByte, "UTF-8");
+		return ret;
 	}
 }

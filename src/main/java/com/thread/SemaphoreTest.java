@@ -24,6 +24,7 @@ public class SemaphoreTest {
 				public void run() {
 					try {
 						// 获取许可
+						
 						semp.acquire();
 						System.out.println("Accessing: " + NO);
 						Thread.sleep((long) (Math.random() * 10000));

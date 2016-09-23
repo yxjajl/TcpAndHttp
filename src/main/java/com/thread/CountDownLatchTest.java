@@ -25,10 +25,10 @@ public class CountDownLatchTest {
 					try {
 						// 如果当前计数为零，则此方法立即返回。
 						// 等待
-						System.out.println("No." + NO + " arrived");
+						System.out.println("No." + NO + " arrived1");
 						begin.await();
 						Thread.sleep((long) (Math.random() * 10000));
-						System.out.println("No." + NO + " arrived");
+						System.out.println("No." + NO + " arrived2");
 					} catch (InterruptedException e) {
 					} finally {
 						// 每个选手到达终点时，end就减一
@@ -42,7 +42,9 @@ public class CountDownLatchTest {
 
 		Thread.sleep(10000L);
 		System.out.println("Game Start");
-		// begin减一，开始游戏
+		// begin减一，开始游戏 ，最小值是0，
+		begin.countDown();
+		begin.countDown();
 		begin.countDown();
 		System.out.println("begin.getCount()" + begin.getCount());
 		// 等待end变为0，即所有选手到达终点
