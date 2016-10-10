@@ -15,14 +15,9 @@ public class ListNewTest {
 
 	public static void main(String[] args) {
 //		test5();
-		test6();
+		test3();
 	}
 
-	public static void test1() {
-		List<Integer> ints = Lists.newArrayList(1, 2, 3, 4, 5, 5);
-		// System.out.println("ints sum is:" + ints.stream().reduce(0, (sum, item) -> sum + item));
-		System.out.println("ints sum is:" + ints.stream().parallel().reduce(0, (sum, item) -> sum + item, (sum, item) -> sum - item));
-	}
 
 	public static void test2() {
 		List<String> names = Arrays.asList("a", "b", "abc", "e", "123");
@@ -49,10 +44,14 @@ public class ListNewTest {
 
 	public static void test3() {
 		List<Person> personList = getPersonList();
+		//按照city,age的纬度来创建map
 		HashMap<String, HashMap<Integer, List<Person>>> muMap =
 
-		personList.stream().collect(Collectors.groupingBy(Person::getCity, HashMap<String, HashMap<Integer, List<Person>>>::new,
-				Collectors.groupingBy(Person::getAge, HashMap<Integer, List<Person>>::new, Collectors.toList())));
+		personList.stream().collect(
+				Collectors.groupingBy(
+						Person::getCity, HashMap<String, HashMap<Integer, List<Person>>>::new,
+						Collectors.groupingBy(Person::getAge, HashMap<Integer, List<Person>>::new, Collectors.toList()))
+				);
 
 		// muMap.keySet().forEach(System.out::println);
 		// muMap.values().forEach(map -> {

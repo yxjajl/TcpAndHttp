@@ -3,6 +3,7 @@ package com.util;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
@@ -183,22 +184,39 @@ public class IdCardUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("田" + getRandomJianHan(2));
-
-		System.out.println(getRandomCard("1983"));
+		System.out.println("关" + getRandomJianHan(2));
+		System.out.println(getRandomCard("1955"));
 		System.out.println("138" + RandomStringUtils.random(8, false, true));
+
+		System.out.println("关" + getRandomJianHan(2));
+		System.out.println(getRandomCard("2007"));
+		System.out.println("138" + RandomStringUtils.random(8, false, true));
+
 	}
 
 	public static String getRandomCard(String year) throws ParseException {
-		String month = StringUtils.leftPad("" + RandomUtils.nextInt(12), 2, '0');
-		String day = StringUtils.leftPad("" + RandomUtils.nextInt(30), 2, '0');
-		IdCardUtil util = new IdCardUtil();
-		String str = "540101"+year + month + day + RandomStringUtils.random(3, false, true);
+
+		String month = StringUtils.leftPad("" + (1 + RandomUtils.nextInt(12)), 2, '0');
+		int maxMonthday = LocalDate.of(Integer.valueOf(year).intValue(), Integer.valueOf(month).intValue(), 1).lengthOfMonth();
+		String day = StringUtils.leftPad("" + (1 + RandomUtils.nextInt(maxMonthday)), 2, '0');
+
+		String str = "540101" + year + month + day + RandomStringUtils.random(3, false, true);
+//		System.out.println(str);
 		// 返回值为""表示正确
-		for (int i = 0; i < 10; i++) {
-			//System.out.println(str + i+":"+util.IDCardValidate(str + i));
-			if ("".equals(util.IDCardValidate(str + i))) {
-				return str + i;
+		return getLast(str);
+	}
+
+	public static String getLast(String str) throws ParseException {
+		IdCardUtil util = new IdCardUtil();
+		for (int i = 0; i <= 10; i++) {
+			String tmp = null;
+			if (i < 10) {
+				tmp = str + i;
+			} else {
+				tmp = str + 'x';
+			}
+			if ("".equals(util.IDCardValidate(tmp))) {
+				return tmp;
 			}
 		}
 		return null;

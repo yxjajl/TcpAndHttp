@@ -9,6 +9,11 @@ import java.util.function.BinaryOperator;
 
 import com.google.common.collect.Lists;
 
+/**
+ * Stream reduce
+ * @author r6yuxx
+ *
+ */
 public class ForExample {
 
 	static BinaryOperator<Integer> mf = (a, b) -> a * b;
@@ -41,7 +46,7 @@ public class ForExample {
 		List<Integer> ints = Lists.newArrayList(1, 2, 3, 4, 5);
 		// 注意第三个参数Combiner 在并发运行时合并结果集,串行时则没卵用
 		System.out.println("ints sum is:" + ints.stream().reduce(0, (sum, item) -> sum + item));
-		System.out.println("ints sum is:" + ints.stream().parallel().reduce(0, (sum, item) -> sum + item, (sum, item) -> sum - item));
+		System.out.println("ints sum is:" + ints.stream().parallel().reduce(0, (sum, item) -> sum + item, (sum, item) -> sum + item));
 
 	}
 }
