@@ -4,7 +4,7 @@ class MyXml {
 
 	static main(args) {
 
-		pars20();
+		pars3();
 	}
 
 	static def pars() {

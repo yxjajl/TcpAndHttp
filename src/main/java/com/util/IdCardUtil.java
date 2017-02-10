@@ -183,16 +183,6 @@ public class IdCardUtil {
 		return flag;
 	}
 
-	public static void main(String[] args) throws Exception {
-		System.out.println("关" + getRandomJianHan(2));
-		System.out.println(getRandomCard("1955"));
-		System.out.println("138" + RandomStringUtils.random(8, false, true));
-
-		System.out.println("关" + getRandomJianHan(2));
-		System.out.println(getRandomCard("2007"));
-		System.out.println("138" + RandomStringUtils.random(8, false, true));
-
-	}
 
 	public static String getRandomCard(String year) throws ParseException {
 
@@ -200,7 +190,8 @@ public class IdCardUtil {
 		int maxMonthday = LocalDate.of(Integer.valueOf(year).intValue(), Integer.valueOf(month).intValue(), 1).lengthOfMonth();
 		String day = StringUtils.leftPad("" + (1 + RandomUtils.nextInt(maxMonthday)), 2, '0');
 
-		String str = "540101" + year + month + day + RandomStringUtils.random(3, false, true);
+		//String str = "540101" + year + month + day + RandomStringUtils.random(3, false, true);
+		String str = "540101" + year + "04" + "12" + RandomStringUtils.random(3, false, true);
 //		System.out.println(str);
 		// 返回值为""表示正确
 		return getLast(str);
@@ -245,5 +236,17 @@ public class IdCardUtil {
 		byte[] fullByte = convert.getUTF8BytesFromGBKString(ret);
 		ret = new String(fullByte, "UTF-8");
 		return ret;
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		System.out.println("关" + getRandomJianHan(2));
+		System.out.println(getRandomCard("2007"));
+		System.out.println("138" + RandomStringUtils.random(8, false, true));
+
+		System.out.println("关" + getRandomJianHan(2));
+		System.out.println(getRandomCard("1986"));
+		System.out.println("138" + RandomStringUtils.random(8, false, true));
+
 	}
 }

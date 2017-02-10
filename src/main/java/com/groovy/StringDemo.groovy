@@ -85,18 +85,28 @@ def ffor() {
 	list2.each{ print it }
 	println ""
 
-	5.times { ss->print "Times + $ss " }
-	1.upto(3) { println "Up + $it " }
+	5.times {print "Times + $it " }
+	println ""
+	1.upto(5) { print "Up + $it " }
+	println ""
 	4.downto(1) { print "Down + $it " }
+	println ""
 	def sum = 0
 	1.upto(100) { sum += it }
 	println "sum="+ sum
 
-	(1..<6).each { print "Range $it" }
+	(3..<6).each { print "Range $it" }
 	println ""
 	for (i in 0..9) {
 		println ("Hello $i")
 	}
+	
+	def a,b = retmoreval();
+	println ("a=$a : b = $b")
+}
+
+def retmoreval() {
+	return [1,2]
 }
 
 class Person{
@@ -141,5 +151,5 @@ def tt3() {
 
 //tt1();
 //tt2();
-tt3();
-//ffor();
+//tt3();
+ffor();
