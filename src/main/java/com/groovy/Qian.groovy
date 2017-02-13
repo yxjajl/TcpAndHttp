@@ -1,13 +1,13 @@
 package com.groovy
 
-class Qian {
+class Qian implements QianRuService{
 
-	static def void change(QianRuVO vo) {
+	public void change(QianRuVO vo) {
 		vo.lastDate = new Date();
 		vo.sum = vo.a * vo.c;
 	}
 
-	static def QianRuVO init(){
+	public QianRuVO init(){
 		def vo = new QianRuVO();
 		vo.a = 30;
 		vo.c = 40;
