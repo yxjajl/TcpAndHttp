@@ -33,10 +33,10 @@ public class ServiceAndDaoGen {
 	private static final String strSmallName = "resume";
 	private static final String strPack = "com.dianziq.com";
 	
-	private static final String strTableName = "t_user";
-	private static final String strColumns = "name,age,birthday,logindate";
-	private static final String strKeyId = "id,uid";
-	private static final String strVO = "com.dianziq.com.vo.UserVO";
+	private static final String strTableName = "t_epay_order";
+	private static final String strColumns = "epay_order_id, epay_order_code, appid, external_code, amount, card_holder_name, card_holder_id, time_expire, notify_url, success_url, second_underwriting, order_detail_url, renew_state, product_code, product_name";
+	private static final String strKeyId = "epay_order_code";
+	private static final String strVO = "com.cignacmb.epayment.domain.EpayOrderVO";
 	
 
 	public static void main(String[] args) throws Exception {

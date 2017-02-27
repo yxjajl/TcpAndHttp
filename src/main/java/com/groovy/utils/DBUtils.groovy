@@ -40,7 +40,7 @@ class DBUtils {
 		}
 		,ORACLE {
 			def getJavaTypeName(type) {
-				return commonMap[2]
+				return DBUtils.getTypeString(type)
 			}
 			def getInstance(url,username,password) {
 				def sql = Sql.newInstance(
@@ -58,7 +58,7 @@ class DBUtils {
 	}
 
 	static List<DBColumnVO> getColumn(sql,schema,table) {
-		ResultSet rs = sql.getConnection().getMetaData().getColumns(null,schema,table,"%");
+		ResultSet rs = sql.getConnection().getMetaData().getColumns(null,"%",table.toUpperCase(),"%");
 		List<DBColumnVO> list= []
 		while (rs.next()) {
 			DBColumnVO dbColumnVO = new DBColumnVO();
@@ -71,7 +71,7 @@ class DBUtils {
 			//dbColumnVO.javaName = getJavaName(dbColumnVO.columnName);
 			//dbColumnVO.javaTypeName = getJavaTypeName(dbColumnVO.columnType, dbColumnVO.columnTypeName);
 			list.add(dbColumnVO);
-			//println dbColumnVO.columnName+","+dbColumnVO.comments
+//			println dbColumnVO.columnName+","+dbColumnVO.comments
 		}
 
 		return list;
