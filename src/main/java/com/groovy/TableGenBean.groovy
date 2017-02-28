@@ -30,14 +30,14 @@ Sql db= DBType.ORACLE.getInstance(url,schema,password);
 StringUtils.useMod()
 StringUtils.useTitle()
 
-def tablename = "t_epay_order";
+def tablename = "t_bank_group";
 List<DBColumnVO> list = DBUtils.getColumn(db,schema,tablename);
 
 list.each {
 	def sformat = "private %s %s; // %s"
 	println sformat % [
 		DBType.ORACLE.getJavaTypeName(it.columnType),
-		it.columnName.toLowerCase().replaceAll("_",""),
+		it.columnName.toLowerCase(),
 		it.comments
 	]
 }
