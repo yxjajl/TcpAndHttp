@@ -14,7 +14,19 @@ import java.time.temporal.TemporalQueries;
 
 public class LocalDateDemo {
 	public static void main(String[] args) {
-		test4();
+		test();
+	}
+
+	public static void test() {
+		// 702629188340608
+		LocalDate today = LocalDate.now();
+		LocalDate yestoday = today.plusDays(-1);
+
+		System.out.println(Instant.now().toEpochMilli());
+		System.out.println(System.currentTimeMillis());
+		System.out.println(today);
+		System.out.println(yestoday);
+
 	}
 
 	public static void test1() {
@@ -97,9 +109,10 @@ public class LocalDateDemo {
 		LocalDate a = LocalDate.of(2016, 9, 28);
 		LocalDate b = LocalDate.of(2018, 7, 1);
 		// 此处暂未明白
-		System.out.println(a.adjustInto(b));
+		System.out.println("adjustInto:"+a.adjustInto(b));
+		System.out.println("adjustInto:"+b);
 
-		System.out.println(b.atStartOfDay());
+		System.out.println("atStartOfDay:"+b.atStartOfDay());
 		System.out.println("atTime:" + a.atTime(18, 23));
 		System.out.println("format:" + a.format(DateTimeFormatter.ISO_LOCAL_DATE)); // 格式化
 		System.out.println("from:" + LocalDate.from(LocalDateTime.of(2015, 3, 31, 15, 0)));// 抽取生成对象

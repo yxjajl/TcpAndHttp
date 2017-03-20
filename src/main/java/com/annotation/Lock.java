@@ -48,16 +48,9 @@ public class Lock {
 		// map1.computeIfAbsent("fruits", k -> "a" + k);
 		// 有就替换，没有就不管
 		// map1.computeIfPresent("fruits", (k,v) -> "a" + k);
-		// map1.computeIfAbsent("fruits", k -> "a" + k);
+		 map1.computeIfAbsent("fruits", k -> "a" + k);
 		// map1.putIfAbsent("fruits", "44");
 		System.out.println(map1);
-
-		Lock lock = getInstance();
-		lock.getLock("123");
-		lock.getLock("123");
-		lock.getLock("123");
-		lock.getLock("123");
-		lock.getLock("123");
 	}
 }
 

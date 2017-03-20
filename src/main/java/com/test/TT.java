@@ -8,13 +8,6 @@ public class TT {
 	static ArrayList<String> list = new ArrayList<>();
 
 	public static void main(String[] args) throws Exception {
-		long sum = 0L;
-
-		for (int i = 0; i < 10000; i++) {
-			sum += test1();
-		}
-
-		System.out.println("avg:" + (sum / 100));
 	}
 
 	public static long test1() {

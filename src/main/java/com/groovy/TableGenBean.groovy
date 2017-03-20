@@ -30,7 +30,7 @@ Sql db= DBType.ORACLE.getInstance(url,schema,password);
 StringUtils.useMod()
 StringUtils.useTitle()
 
-def tablename = "t_bank_group";
+def tablename = "t_epay_order_detail";
 List<DBColumnVO> list = DBUtils.getColumn(db,schema,tablename);
 
 list.each {

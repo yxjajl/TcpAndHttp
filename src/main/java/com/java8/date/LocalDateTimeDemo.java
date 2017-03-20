@@ -1,6 +1,7 @@
 package com.java8.date;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.MonthDay;
 
 public class LocalDateTimeDemo {
@@ -9,7 +10,6 @@ public class LocalDateTimeDemo {
 	}
 
 	public static void test1() {
-
 	}
 
 }
