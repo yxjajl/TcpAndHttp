@@ -2,10 +2,10 @@ package com.java8;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class CollectorsDemo {
@@ -48,6 +48,8 @@ public class CollectorsDemo {
 
 		Map<Integer, List<Person>> byDept = people.stream().collect(Collectors.groupingBy(Person::getId));
 		System.out.println("byDept:" + byDept);
+		Map mmm = people.stream().collect(Collectors.groupingBy(Person::getId, TreeMap::new, Collectors.mapping(Person::getName, Collectors.toList())));
+		System.out.println("MMM+" + mmm);
 
 		// Map<Integer, String> toMap =
 		// people.stream().collect(Collectors.toMap(Person::getId,
