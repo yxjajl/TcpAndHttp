@@ -3,6 +3,7 @@ package com.groovy
 import org.apache.commons.io.FileUtils;
 
 class InstallPom {
+	//-Dclassifier=sources
 	static final String strInstall = "mvn install:install-file -Dfile=D:\\doc\\jar\\%s -DgroupId=%s -DartifactId=%s -Dversion=%s -Dpackaging=jar";
 	static main(args) {
 		String path = "D:\\doc\\jar\\dd.xml";

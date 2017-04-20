@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class CollectorsDemo {
@@ -46,10 +47,17 @@ public class CollectorsDemo {
 		double average = people.stream().collect(Collectors.averagingDouble(Person::getAge));
 		System.out.println("average:" + average);
 
-		Map<Integer, List<Person>> byDept = people.stream().collect(Collectors.groupingBy(Person::getId));
+		Function<Person, Person> keyFunction = it ->{ it.setCity(it.getCity().toUpperCase());return it;};
+		Map<String, List<Person>> byDept = people.stream().map(keyFunction).collect(Collectors.groupingBy(Person::getCity));
 		System.out.println("byDept:" + byDept);
+		
+		Map<String, List<String>> byDept2 = people.stream().collect(Collectors.groupingBy(Person::getCity,Collectors.mapping(Person::getName, Collectors.toList())));
+		System.out.println("byDept2:" + byDept2);
+		
 		Map mmm = people.stream().collect(Collectors.groupingBy(Person::getId, TreeMap::new, Collectors.mapping(Person::getName, Collectors.toList())));
 		System.out.println("MMM+" + mmm);
+		
+		System.out.println("mapping = "+people.stream().collect(Collectors.mapping(Person::getName, Collectors.toList())));
 
 		// Map<Integer, String> toMap =
 		// people.stream().collect(Collectors.toMap(Person::getId,
@@ -58,6 +66,8 @@ public class CollectorsDemo {
 
 		Map<Integer, String> toMap2 = people.stream().collect(Collectors.toMap(Person::getId, Person::getName, (a, b) -> a + "," + b));
 		System.out.println("toMap2:" + toMap2);
+		Map<Integer, String> toMap3 = people.stream().collect(Collectors.toMap(Person::getId, Person::getName, (a, b) -> a));
+		System.out.println("toMap3:" + toMap3);
 		System.out.println("max:" + people.stream().collect(Collectors.maxBy((a, b) -> a.getId() - b.getId())).get().getId());
 
 		StringJoiner sj = new StringJoiner(":", "[", "]");

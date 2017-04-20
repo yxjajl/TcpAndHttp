@@ -241,7 +241,7 @@ public class IdCardUtil {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("关" + getRandomJianHan(2));
-		System.out.println(getRandomCard("2007"));
+		System.out.println(getRandomCard("2009"));
 		System.out.println("138" + RandomStringUtils.random(8, false, true));
 
 		System.out.println("关" + getRandomJianHan(2));

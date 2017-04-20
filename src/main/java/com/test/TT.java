@@ -8,6 +8,25 @@ public class TT {
 	static ArrayList<String> list = new ArrayList<>();
 
 	public static void main(String[] args) throws Exception {
+		System.out.println(tableSizeFor(9));
+	}
+
+	static final int MAXIMUM_CAPACITY = 1 << 30;
+
+	static final int tableSizeFor(int cap) {
+		int n = cap - 1;
+		System.out.println(Integer.toBinaryString(n));
+		n |= n >>> 1;
+		System.out.println(Integer.toBinaryString(n));
+		n |= n >>> 2;
+		System.out.println(Integer.toBinaryString(n));
+		n |= n >>> 4;
+		System.out.println(Integer.toBinaryString(n));
+		n |= n >>> 8;
+		System.out.println(Integer.toBinaryString(n));
+		n |= n >>> 16;
+		System.out.println(Integer.toBinaryString(n));
+		return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
 	}
 
 	public static long test1() {

@@ -14,7 +14,7 @@ public class CompletionServiceTest {
 		// 创建CompletionService
 		CompletionService<String> serv = new ExecutorCompletionService<String>(exec);
 		int size = 0;
-		for (int index = 0; index < 5; index++) {
+		for (int index = 0; index < 500; index++) {
 			final int NO = index;
 			// Callable 接口类似于 Runnable
 			// Callable<String> downImg = new Callable<String>() {
