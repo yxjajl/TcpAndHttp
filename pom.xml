@@ -214,6 +214,14 @@
 			<version>2.2.2</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.21.0-GA</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.codehaus.groovy.modules.http-builder</groupId>
 			<artifactId>http-builder</artifactId>
@@ -236,9 +244,8 @@
 			<version>${ignite.version}</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>javabuilder</groupId> <artifactId>javabuilder</artifactId> 
-			<version>1.0</version> <scope>system</scope> <systemPath>E:/code/nswf/branches/dev-0.5.4/lib/third/fileserver-client-put-0.2.jar</systemPath> 
-			</dependency> -->
+		<!-- <dependency> <groupId>javabuilder</groupId> <artifactId>javabuilder</artifactId> <version>1.0</version> <scope>system</scope> 
+			<systemPath>E:/code/nswf/branches/dev-0.5.4/lib/third/fileserver-client-put-0.2.jar</systemPath> </dependency> -->
 	</dependencies>
 
 </project>

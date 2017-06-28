@@ -9,4 +9,8 @@ public class FB extends FA {
 	public static void main(String[] args) {
 		FA.hello();
 	}
+
+	public String getMessage(String a) {
+		return a + " end";
+	}
 }

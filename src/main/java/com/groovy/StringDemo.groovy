@@ -18,8 +18,8 @@ def tt1() {
 	println s
 	s = 'c:\tindows\tystem'
 	println s
-	s="""123456"""
-	println "aaaaaaa"+ s[0..-1]
+	s="""123${s}456"""
+	println "aaa${s}aaaa"+ s[0..-1]
 	
 	s= " 123 "
 	println "去空格: |${s.trim()}"

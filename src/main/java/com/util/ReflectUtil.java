@@ -1,6 +1,7 @@
 package com.util;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,15 @@ public class ReflectUtil {
 			field.setAccessible(true);
 		}
 		field.set(target, value);
+	}
+
+	public static Method getMethod(final Class<?> clazz, String fieldName) throws Exception {
+		for (Method method : clazz.getMethods()) {
+			if (method.getName().equalsIgnoreCase(fieldName)) {
+				return method;
+			}
+		}
+		return null;
 	}
 
 	public static Object getFieldsValue(Object target, String fieldName) throws Exception {
