@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+
 public class TT {
 	static ArrayList<String> list = new ArrayList<>();
 
 	public static void main(String[] args) throws Exception {
-		System.out.println(tableSizeFor(9));
+		System.out.println(JSON.parseObject("\"U1234566\"", String.class));
+		
+//		System.out.println(JSON.toJSONString("U1234566"));
 	}
 
 	static final int MAXIMUM_CAPACITY = 1 << 30;
