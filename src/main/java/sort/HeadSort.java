@@ -21,7 +21,7 @@ public class HeadSort {
 	// i节点的左右子节点的值是 2i+1, 2i+2,父节点的下标是 i-1/2
 	private static void buildMaxHeap(int arr[]) {
 		// 从子节点往上调整
-		// 最后一个节点的父节点
+		// 最后一个节点的父节点 ((index-1)/2就是最后一个节点的父节点下标)
 		int parent = (arr.length - 1 - 1) / 2;
 		for (int i = parent; i >= 0; i--) { // 必须从大到
 			maxHeapify(arr, i, arr.length - 1);
@@ -29,6 +29,7 @@ public class HeadSort {
 	}
 
 	private static void maxHeapify(int[] arr, int index, int lastIndex) {
+		// 父节点与两个子节点中值最大的那个节点的下标
 		int biggest = getMaxIndex(arr, index, lastIndex);
 		// 需要进行调整
 		if (biggest != index) {

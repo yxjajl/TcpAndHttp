@@ -10,6 +10,7 @@ public class OptionalMain {
 
 		Optional<String> tmp = Optional.empty();
 		tmp = Optional.ofNullable(null);
+		System.out.println("null:"+tmp.orElse(null));
 		System.out.println("test1= " + tmp + "," + tmp.isPresent());
 		System.out.println("orElse= " + tmp.orElse("none"));
 		System.out.println("orElseGet= " + tmp.orElseGet(() -> "none"));
@@ -22,8 +23,8 @@ public class OptionalMain {
 		System.out.println("=======================================================");
 		tmp = Optional.ofNullable("hello");
 		System.out.println("test2= " + tmp.get() + "," + tmp.isPresent());
-		System.out.println("orElseGet= " + tmp.orElseGet(() -> "none"));
-		System.out.println("orElseGet= " + tmp.orElseThrow(BusinessException::new));
+		System.out.println("orElseGet111= " + tmp.orElseGet(() -> "none"));
+		System.out.println("orElseGet222= " + tmp.orElseThrow(BusinessException::new));
 		System.out.println("map=" + tmp.map((value) -> value.toUpperCase()));
 		System.out.println("flatMap=" + tmp.flatMap((value) -> Optional.of(value.toUpperCase())));
 		System.out.println("filter=" + tmp.filter((value) -> value.length() > 3));

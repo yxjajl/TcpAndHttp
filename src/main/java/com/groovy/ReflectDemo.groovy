@@ -9,7 +9,10 @@ class ReflectDemo {
 		println vo."c";
 		println "===================="
 		//vo.metaClass.metaMethods.each {println it};
-		//vo.metaClass.properties.each {println it.name};
+		vo.metaClass.properties.each {println "yyyy:"+it.name.class};
+		println "==================="
+		println vo.metaClass.hasProperty(vo,"b").type.simpleName;
+		
 		vo."setB"("ddddx")
 		println vo."b";
 		println vo.a;
