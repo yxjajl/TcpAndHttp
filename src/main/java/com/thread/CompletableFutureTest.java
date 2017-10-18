@@ -2,14 +2,78 @@ package com.thread;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class CompletableFutureTest {
 
 	public static void main(String[] args) throws Exception {
-		test2();
+		test1();
+	}
+
+	public static void test45() throws Exception {
+		CompletableFuture<String> resultCompletableFuture = CompletableFuture.supplyAsync(new Supplier<String>() {
+
+			@Override
+			public String get() {
+				System.out.println("run--");
+				try {
+					TimeUnit.SECONDS.sleep(3);
+					System.out.println("run ??--" + Thread.currentThread().getName());
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				return "hello";
+			}
+		}, Executors.newFixedThreadPool(1));
+		resultCompletableFuture.exceptionally(new Function<Throwable, String>() {
+			@Override
+			public String apply(Throwable t) {
+				System.out.println("exceptionally:" + t.getMessage());
+				return t.getMessage();
+			}
+		}).thenAccept(new Consumer<String>() {
+			@Override
+			public void accept(String t) {
+				System.out.println("accept--" + Thread.currentThread().getName() + "," + t);
+			}
+		});
+		resultCompletableFuture.completeExceptionally(new Exception("error"));
+		System.out.println("over");
+	}
+
+	public static void test4() throws Exception {
+		CompletableFuture<String> resultCompletableFuture = CompletableFuture.supplyAsync(new Supplier<String>() {
+
+			@Override
+			public String get() {
+				System.out.println("run--");
+				try {
+					TimeUnit.SECONDS.sleep(3);
+					System.out.println("run ??--" + Thread.currentThread().getName());
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				return "hello";
+			}
+		}, Executors.newFixedThreadPool(1));
+		resultCompletableFuture.exceptionally(new Function<Throwable, String>() {
+			@Override
+			public String apply(Throwable t) {
+				System.out.println("exceptionally:" + t.getMessage());
+				return t.getMessage();
+			}
+		}).thenAccept(new Consumer<String>() {
+			@Override
+			public void accept(String t) {
+				System.out.println("accept--" + Thread.currentThread().getName() + "," + t);
+			}
+		});
+		resultCompletableFuture.thenAcceptAsync(i -> System.out.println(i + Thread.currentThread().getName()));
+		System.out.println("over");
 	}
 
 	public static void test1() throws InterruptedException, ExecutionException {
@@ -19,7 +83,8 @@ public class CompletableFutureTest {
 			return 100 / 0;
 		});
 
-		future = future.whenCompleteAsync((i, t) -> System.out.println(i));
+		// 此处要注意 whenCompleteAsync和exceptionally的位置，(whenCompleteAsync在前打印空,在后则打印1)
+		future = future.whenCompleteAsync((i, t) -> System.out.println("x:" + i));
 		// 当异常时这个会起作用
 		future = future.exceptionally((t) -> {
 			System.out.println("发生异常了" + t);

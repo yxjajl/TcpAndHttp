@@ -55,8 +55,7 @@ class MapperUtils {
 	}
 	
 	static main(args) {
-		def columns = """epay_order_id, epay_order_code, appid, external_code, amount, card_holder_name, card_holder_id, time_expire, notify_url, success_url,
-		second_underwriting, order_detail_url, renew_state, product_code, product_name"""
-		gen("com.cignacmb.epayment.dao.EpayOrderMapper","com.cignacmb.epayment.domain","t_epay_order",columns)
+		def columns = """epay_trade_no, trancaction_id, business_ssn, bank_code, policy_no, epay_amount, bill_date, merchant_account, app_id, business_from, city, ismatch, notmatchreason"""
+		gen("com.cignacmb.epayment.dao.EpayBillCoreMapper","com.cignacmb.epayment.domain","t_epay_bill_core",columns)
 	}
 }

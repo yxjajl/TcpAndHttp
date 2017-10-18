@@ -1,6 +1,10 @@
 package com.callback;
 
 public interface FetcherCallback {
-	void onData(Data data) throws Exception;
-	void onError(Throwable cause);
+	default void onData(Data data) throws Exception {
+		System.out.println("Data received: " + data);
+	}
+	default void onError(Throwable cause) {
+		System.out.println("An error accour: " + cause.getMessage());
+	}
 }

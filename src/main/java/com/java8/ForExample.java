@@ -10,7 +10,10 @@ import java.util.function.BinaryOperator;
 import com.google.common.collect.Lists;
 
 /**
+ * 
+ * 双冒号可以用在静态方法，new方法，以及Function,Comsumer所处理对象的成员方法
  * Stream reduce
+ * 
  * @author r6yuxx
  *
  */
