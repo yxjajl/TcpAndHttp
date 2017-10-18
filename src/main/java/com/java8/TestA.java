@@ -2,9 +2,7 @@ package com.java8;
 
 public class TestA {
 	public static void main(String[] args) {
-		Thread th = new Thread(() -> {
-			System.out.println("abc");
-		});
+		Thread th = new Thread(() -> System.out.println("abc"));
 		new TestA().aa(x -> System.out.println(x.getName()), th);
 	}
 

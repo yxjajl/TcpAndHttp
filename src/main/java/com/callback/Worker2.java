@@ -4,7 +4,7 @@ public class Worker2 {
 
 	public void doWork() {
 		Fetcher fetcher = new MyFetcher(new Data(1, 0));
-		fetcher.fetchData(Data::toString, Worker2::onError);
+		fetcher.fetchData(Data::toString, e -> onError(e));
 	}
 
 	public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class Worker2 {
 		w.doWork();
 	}
 
-	public static void onError(Throwable cause) {
+	public void onError(Throwable cause) {
 		System.out.println("An error accour: " + cause.getMessage());
 	}
 }
