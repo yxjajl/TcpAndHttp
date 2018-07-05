@@ -14,8 +14,10 @@ public class TestMain {
 //		testService.aa("rick");
 
 		Map<String, Object> map = context.getBeansWithAnnotation(OrderQuery.class);
-
-		System.out.println(map);
+		for(Object obj :map.values()) {
+			((AOrderQuery)obj).say();
+		}
+		
 
 		System.out.println("XXXXXXXXXXXXXX:end:XXXXXXXXXXXXX");
 

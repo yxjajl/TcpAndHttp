@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.MonthDay;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -11,10 +12,24 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.TemporalQueries;
+import java.util.Arrays;
 
 public class LocalDateDemo {
 	public static void main(String[] args) {
-		test();
+//		test4();
+
+		// 随意取一个时间，取了当前时间
+		LocalDate localDate = LocalDate.now();
+		System.out.println("当前时间为：" + localDate);
+
+		// 根据封装好的月份获取一个一月到十二月的Month流，此时流里的对象为Month
+		Arrays.stream(Month.values())
+				// 把每个month都调整到当前这个时间里，此时流的对象为LocalDate
+				.map(month -> month.adjustInto(localDate))
+				// 这里方便里观察此时流的数据，把转换后的时间打印了出来
+				.peek(t->System.out.println("xxx:"+t))				
+				// 打印最后的周数
+				.forEach(System.out::println);
 	}
 
 	public static void test() {
@@ -76,15 +91,15 @@ public class LocalDateDemo {
 		LocalDate nextYear = today.plus(1, ChronoUnit.YEARS);
 		System.out.println("Date after 1 year : " + nextYear);
 
-		System.out.println(LocalDate.of(2012, 6, 30).isBefore(LocalDate.of(2012, 6, 30)));
-		System.out.println(LocalDate.of(2012, 6, 30).isAfter(LocalDate.of(2012, 6, 30)));
-		System.out.println(LocalDate.of(2012, 6, 30).isEqual(LocalDate.of(2012, 6, 30)));
+		System.out.println(LocalDate.of(2012, 10, 1).isBefore(LocalDate.of(2012, 10, 1)));// false
+		System.out.println(LocalDate.of(2012, 6, 30).isAfter(LocalDate.of(2012, 6, 30)));// false
+		System.out.println(LocalDate.of(2012, 6, 30).isEqual(LocalDate.of(2012, 6, 30)));// true
 
 		// 计算两个日期之间的天数和月数
 		LocalDate java8Release = LocalDate.of(2014, 10, 14);
 		Period period = Period.between(java8Release, today);
 		System.out.println("Months left between today and Java 8 release : " + (period.getYears() * 12 + period.getMonths()));
-		System.out.println("Months left between today and Java 8 release : " + period.getDays());
+		System.out.println("Months left between today and Java 8 release : " + period.get(ChronoUnit.DAYS));
 
 		// 时间戳
 		long now = System.currentTimeMillis();
@@ -109,10 +124,10 @@ public class LocalDateDemo {
 		LocalDate a = LocalDate.of(2016, 9, 28);
 		LocalDate b = LocalDate.of(2018, 7, 1);
 		// 此处暂未明白
-		System.out.println("adjustInto:"+a.adjustInto(b));
-		System.out.println("adjustInto:"+b);
+		System.out.println("adjustInto a:" + a.adjustInto(b));
+		System.out.println("adjustInto b:" + b);
 
-		System.out.println("atStartOfDay:"+b.atStartOfDay());
+		System.out.println("atStartOfDay:" + b.atStartOfDay());
 		System.out.println("atTime:" + a.atTime(18, 23));
 		System.out.println("format:" + a.format(DateTimeFormatter.ISO_LOCAL_DATE)); // 格式化
 		System.out.println("from:" + LocalDate.from(LocalDateTime.of(2015, 3, 31, 15, 0)));// 抽取生成对象
@@ -127,7 +142,7 @@ public class LocalDateDemo {
 		System.out.println("isSupported:" + a.isSupported(ChronoUnit.HOURS));
 		System.out.println("lengthOfMonth:" + a.lengthOfMonth());
 		System.out.println("lengthOfYear:" + a.lengthOfYear());
-		System.out.println("query:" + a.query(TemporalQueries.precision()));// ?
+		System.out.println("query:" + a.query(TemporalQueries.localDate()));// ?
 		System.out.println("range:" + a.range(ChronoField.ALIGNED_DAY_OF_WEEK_IN_MONTH));// ?
 	}
 }

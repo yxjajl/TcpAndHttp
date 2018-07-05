@@ -9,12 +9,14 @@ import java.net.URL;
 public class Testmain {
 
 	public static void main(String[] args) {
+		
 
-		String httpUrl = "http://apis.baidu.com/chonry/chonrysms/chonryapi";
-		String httpArg = "content=vericode123&mobile=15889328140";
-		String jsonResult = request(httpUrl, httpArg);
-		System.out.println(jsonResult);
+	}
 
+	public static void byteArrPrint(byte[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.println("arr[" + i + "]=" + (Integer.toHexString(arr[i])));
+		}
 	}
 
 	/**

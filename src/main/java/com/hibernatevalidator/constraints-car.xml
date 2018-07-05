@@ -1,0 +1,34 @@
+<constraint-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping validation-mapping-1.0.xsd" xmlns="http://jboss.org/xml/ns/javax/validation/mapping">
+	<bean class="com.hibernatevalidator.Car" ignore-annotations="true">
+		<field name="manufacturer">
+			<constraint annotation="javax.validation.constraints.NotNull" />
+		</field>
+		<field name="licensePlate">
+			<constraint annotation="javax.validation.constraints.NotNull" />
+			<constraint annotation="javax.validation.constraints.Size">
+				<element name="min">2</element>
+				<element name="max">14</element>
+			</constraint>
+
+		</field>
+		<field name="seatCount">
+			<constraint annotation="javax.validation.constraints.Min">
+				<element name="value">2</element>
+			</constraint>
+		</field>
+		<field name="driver">
+			<valid />
+		</field>
+
+	</bean>
+	<bean class="com.hibernatevalidator.subcar.RentalCar" ignore-annotations="true">
+		<field name="rented">
+			<constraint annotation="javax.validation.constraints.NotNull" />
+		</field>
+		<!-- <class ignore-annotations="true"> <group-sequence> <value>RentalCar</value> <value>CarChecks</value> </group-sequence> 
+			</class> -->
+	</bean>
+	<!-- <constraint-definition annotation="org.mycompany.CheckCase" include-existing-validator="false"> <validated-by include-existing-validators="false"> 
+		<value>org.mycompany.CheckCaseValidator</value> </validated-by> </constraint-definition> -->
+</constraint-mappings>

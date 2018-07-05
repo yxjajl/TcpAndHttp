@@ -2,18 +2,26 @@ package com.java8;
 
 import java.util.Optional;
 
+import org.springframework.util.Assert;
+
 import com.excep.BusinessException;
 
 public class OptionalMain {
 
 	public static void main(String[] args) throws Exception {
 
-		Optional<String> tmp = Optional.empty();
-		tmp = Optional.ofNullable(null);
-		System.out.println("null:"+tmp.orElse(null));
-		System.out.println("test1= " + tmp + "," + tmp.isPresent());
-		System.out.println("orElse= " + tmp.orElse("none"));
-		System.out.println("orElseGet= " + tmp.orElseGet(() -> "none"));
+		Optional<String> tmp = Optional.ofNullable(null);
+
+		System.out.println("null:" + tmp.orElse("3"));
+
+		Assert.isNull(tmp.orElse(null));
+		Assert.notNull(tmp.orElse("3"));
+		Assert.isTrue(tmp.equals(Optional.empty()));
+		Assert.isTrue(!tmp.isPresent());
+
+		Assert.isTrue("none".equals(tmp.orElse("none")));
+		Assert.isTrue("none".equals(tmp.orElseGet(() -> "none")));
+
 //		System.out.println("orElseGet= " + tmp.orElseThrow(BusinessException::new));
 		System.out.println("map=" + tmp.map((value) -> value.toUpperCase()));
 		System.out.println("flatMap=" + tmp.flatMap((value) -> Optional.of(value.toUpperCase())));
@@ -27,8 +35,8 @@ public class OptionalMain {
 		System.out.println("orElseGet222= " + tmp.orElseThrow(BusinessException::new));
 		System.out.println("map=" + tmp.map((value) -> value.toUpperCase()));
 		System.out.println("flatMap=" + tmp.flatMap((value) -> Optional.of(value.toUpperCase())));
-		System.out.println("filter=" + tmp.filter((value) -> value.length() > 3));
-		System.out.println("filter=" + tmp.filter((value) -> value.length() > 8));
+		System.out.println("filter=" + tmp.filter((value) -> value.length() > 3));//hello
+		System.out.println("filter=" + tmp.filter((value) -> value.length() > 8));//empty
 		tmp.ifPresent(System.out::println);
 
 		System.out.println("====================000000000===================================");
@@ -37,7 +45,7 @@ public class OptionalMain {
 
 		optional1.ifPresent((t) -> t.say());
 		optional2.ifPresent((t) -> t.say());
-		//optional1.orElse(optional2.get()).say();
+		// optional1.orElse(optional2.get()).say();
 
 		// if(optional.isPresent()) {
 		// optional.get().say();

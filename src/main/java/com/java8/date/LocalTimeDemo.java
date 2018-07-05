@@ -9,7 +9,7 @@ import java.time.LocalTime;
 //timestamp -> LocalDateTime
 public class LocalTimeDemo {
 	public static void main(String[] args) {
-		test2();
+		test1();
 	}
 
 	public static void test1() {
@@ -22,8 +22,8 @@ public class LocalTimeDemo {
 		LocalTime zero = LocalTime.of(0, 0, 0); // 00:00:00
 		LocalTime mid = LocalTime.parse("12:00:00"); // 12:00:00
 
-		System.out.println(zero);
-		System.out.println(mid);
+		System.out.println("zero:"+zero);
+		System.out.println("mid:"+mid);
 	}
 
 	public static void test2() {
